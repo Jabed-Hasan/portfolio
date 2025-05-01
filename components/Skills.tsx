@@ -280,7 +280,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 mt-16">
       <h1 className="heading">
         My <span className="text-purple">Skill Set</span>
       </h1>

@@ -2,6 +2,7 @@ export const navItems = [
   { name: "Home", link: "#home" },
   { name: "About", link: "#about" },
   { name: "Skills", link: "#skills" },
+  { name: "Education", link: "#education" },
   { name: "Journey", link: "#journey" },
   { name: "Projects", link: "#projects" },
   { name: "Blogs", link: "#blogs" },
@@ -157,31 +158,31 @@ export const projects = [
 export const testimonials = [
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Jabed was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jabed's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jabed is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Jabed was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jabed's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jabed is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Jabed was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jabed's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jabed is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Jabed was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jabed's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jabed is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Jabed was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jabed's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jabed is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
   },
@@ -338,5 +339,35 @@ export const socialMedia = [
   {
     id: 3,
     img: "/link.svg",
+  },
+];
+
+export const education = [
+  {
+    id: 1,
+    institution: "Green University of Bangladesh",
+    degree: "Bachelor of Science in Computer Science & Engineering (4th Year)",
+    duration: "2022 - Present",
+    description:
+      "Focusing on software development, algorithms, and data structures with a minor in AI.",
+    thumbnail: "/Green_University_of_Bangladesh_logo.svg",
+  },
+  {
+    id: 2,
+    institution: "Programming Hero",
+    degree: "Next Level Web Development Course",
+    duration: "2025 - present",
+    description:
+      "Completed the complete web development Level 2 course with Programming Hero.",
+    thumbnail: "/programming-hero.png",
+  },
+  {
+    id: 3,
+    institution: "Programming Hero",
+    degree: "Complete Web Development Course",
+    duration: "2023 - 2024",
+    description:
+      "Completed the complete web development Level 1 course with Programming Hero.",
+    thumbnail: "/programming-hero.png",
   },
 ];

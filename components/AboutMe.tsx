@@ -9,10 +9,7 @@ import { Spotlight } from "./ui/Spotlight";
 
 const AboutMe = () => {
   return (
-    <section
-      id="about"
-      className="py-12 sm:py-20 text-white relative min-h-screen"
-    >
+    <section id="about" className="py-12 sm:py-20 text-white relative">
       {/* Spotlights background - return to previous style */}
       <div className="hidden sm:block">
         <Spotlight
@@ -28,7 +25,7 @@ const AboutMe = () => {
 
       {/* Grid background with same styling as hero */}
       <div
-        className="h-screen w-full dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
+        className="h-full w-full dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
        absolute top-0 left-0 flex items-center justify-center"
       >
         {/* Radial gradient for the container to give a faded look */}
@@ -45,7 +42,7 @@ const AboutMe = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Left profile section - fully transparent */}
-          <div className="border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col h-[400px]">
+          <div className="border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col">
             <div className="flex flex-col sm:flex-row sm:items-center mb-4">
               <div className="w-16 h-16 mb-3 sm:mb-0 sm:mr-4 bg-indigo-600 rounded-full flex items-center justify-center text-xl font-bold">
                 JH
@@ -112,7 +109,7 @@ const AboutMe = () => {
           </div>
 
           {/* Right skills grid - fully transparent */}
-          <div className="h-[400px] flex flex-col">
+          <div className="flex flex-col">
             <div className="flex flex-col gap-6 h-full">
               <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
                 <div className="flex items-center mb-3 sm:mb-4">
