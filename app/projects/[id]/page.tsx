@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 // Define Project type
 type Project = {
@@ -26,6 +27,7 @@ const ProjectDetailsPage = () => {
   const { id } = useParams();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
+  const [iconErrors, setIconErrors] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -78,6 +80,14 @@ const ProjectDetailsPage = () => {
     fetchProject();
   }, [id]);
 
+  // Handle icon loading errors
+  const handleIconError = (icon: string, index: number) => {
+    setIconErrors((prev) => ({
+      ...prev,
+      [`${icon}-${index}`]: true,
+    }));
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -112,15 +122,22 @@ const ProjectDetailsPage = () => {
 
         <div className="bg-[#13162D] rounded-3xl p-6 sm:p-10">
           <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[50vh] mb-10 rounded-2xl overflow-hidden flex items-center justify-center">
-            <img
+            <Image
               src="/bg.png"
               alt="background"
               className="absolute inset-0 w-full h-full object-cover"
+              fill
+              priority
             />
-            <img
+            <Image
               src={project.img}
               alt={project.title}
               className="z-10 relative max-h-[80%] max-w-full px-4"
+              width={500}
+              height={300}
+              priority
+              onError={() => console.warn("Failed to load project image")}
+              unoptimized={!project.img.startsWith("/")}
             />
           </div>
 
@@ -162,9 +179,23 @@ const ProjectDetailsPage = () => {
               {project.iconLists.map((icon: string, index: number) => (
                 <div
                   key={index}
-                  className="border border-white/[.2] rounded-full bg-black w-12 h-12 flex justify-center items-center mr-4 mb-4"
+                  className="border border-white/[.2] rounded-full bg-black w-16 h-16 flex justify-center items-center mr-4 mb-4"
                 >
-                  <img src={icon} alt={`technology-${index}`} className="p-2" />
+                  {!iconErrors[`${icon}-${index}`] ? (
+                    <Image
+                      src={icon}
+                      alt={`technology-${index}`}
+                      className="p-1.5"
+                      width={42}
+                      height={42}
+                      onError={() => handleIconError(icon, index)}
+                      unoptimized={!icon.startsWith("/")}
+                    />
+                  ) : (
+                    <div className="w-10 h-10 flex items-center justify-center text-white text-sm">
+                      Tech
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

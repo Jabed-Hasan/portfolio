@@ -13,13 +13,13 @@ const Blog = () => {
   }, []);
 
   return (
-    <section id="blogs" className="py-20 relative overflow-hidden">
+    <section id="blogs" className="py-20 relative overflow-hidden w-full">
       {/* Animated background elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-purple/5 rounded-full filter blur-3xl animate-blob"></div>
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-500/5 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
       <div className="absolute bottom-32 left-1/2 w-72 h-72 bg-pink-500/5 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
 
-      <h1 className="heading">
+      <h1 className="heading text-center">
         Latest
         <span className="text-purple"> Blog Posts</span>
       </h1>
@@ -116,7 +116,7 @@ const Blog = () => {
         }
       `}</style>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 px-2 sm:px-4 w-full">
         {blogPosts.map((post, index) => (
           <div
             key={index}
@@ -174,10 +174,12 @@ const Blog = () => {
 
               {/* Author info */}
               <div className="flex items-center mt-2 mb-4 group">
-                <img
+                <Image
                   src={post.authorImage || "/profile.svg"}
                   alt={post.author}
-                  className="w-8 h-8 rounded-full mr-2 transition-transform duration-300 group-hover:scale-110"
+                  width={32}
+                  height={32}
+                  className="rounded-full mr-2 transition-transform duration-300 group-hover:scale-110"
                 />
                 <div>
                   <p className="text-white text-sm font-medium group-hover:text-purple transition-colors duration-300">

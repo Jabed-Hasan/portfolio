@@ -7,6 +7,7 @@ import {
   FaCodeBranch,
   FaCertificate,
 } from "react-icons/fa";
+import Image from "next/image";
 
 import { socialMedia, navItems } from "@/data";
 import MagicButton from "./MagicButton";
@@ -20,14 +21,16 @@ const Footer = () => {
     <footer className="w-full pt-20 pb-10 relative" id="contact">
       {/* Background grid */}
       <div className="w-full absolute left-0 -z-10 min-h-96">
-        <img
+        <Image
           src="/footer-grid.svg"
           alt="grid"
           className="w-full h-full opacity-50"
+          width={1920}
+          height={500}
         />
       </div>
 
-      <div className="w-full mx-auto px-0">
+      <div className="w-full">
         {/* Main content */}
         <div className="flex flex-col items-center mb-16">
           <h1 className="heading lg:max-w-[45vw] text-center">
@@ -48,7 +51,7 @@ const Footer = () => {
         </div>
 
         {/* Footer links and info section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-t border-white/10 pt-10 px-6 md:px-12 lg:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-t border-white/10 pt-10 px-2 sm:px-4">
           {/* About Column */}
           <div className="md:col-span-1 lg:col-span-1">
             <h3 className="text-xl font-bold mb-4">About Me</h3>
@@ -66,7 +69,13 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="w-10 h-10 flex justify-center items-center backdrop-filter backdrop-blur-lg bg-black-200 bg-opacity-30 rounded-full border border-white/10 transition-all hover:bg-purple hover:bg-opacity-10 hover:scale-110"
                 >
-                  <img src={item.img} alt="social" className="w-5 h-5" />
+                  <Image
+                    src={item.img}
+                    alt="social"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5"
+                  />
                 </a>
               ))}
             </div>

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import blogContentData from "@/data/blogContent.json";
 
 type ContentBlock = {
@@ -56,7 +57,8 @@ const BlogPost = () => {
           Blog Post Not Found
         </h1>
         <p className="text-gray-400 mb-8">
-          The blog post you're looking for doesn't exist or has been removed.
+          The blog post you&apos;re looking for doesn&apos;t exist or has been
+          removed.
         </p>
         <Link
           href="/#blogs"
@@ -102,10 +104,12 @@ const BlogPost = () => {
             {blogPost.title}
           </h1>
           <div className="flex items-center">
-            <img
+            <Image
               src={blogPost.authorImage}
               alt={blogPost.author}
-              className="w-10 h-10 rounded-full mr-3"
+              width={40}
+              height={40}
+              className="rounded-full mr-3"
             />
             <div>
               <p className="text-white font-medium">{blogPost.author}</p>

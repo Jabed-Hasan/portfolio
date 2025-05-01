@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { Button } from "./ui/MovingBorders";
 
 const Skills = () => {
@@ -91,8 +92,19 @@ const Skills = () => {
     docker: "/dock.svg",
   };
 
+  // Track images that fail to load
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+  
+  // Define a union type for the icon return type
+  type IconResult = string | JSX.Element;
+
   // Get logo URL with appropriate icon
-  const getLogoUrl = (icon, name) => {
+  const getLogoUrl = (icon: string, name: string): IconResult => {
+    // Check if we have a local logo first
+    if (localLogos[icon as keyof typeof localLogos] && !failedImages[icon]) {
+      return localLogos[icon as keyof typeof localLogos];
+    }
+    
     // Special case for interpersonal skills - use custom icons
     if (
       [
@@ -123,9 +135,33 @@ const Skills = () => {
     return `https://cdn.simpleicons.org/${icon}/white`;
   };
 
+  // Handle image load error 
+  const handleImageError = (icon: string) => {
+    setFailedImages(prev => ({
+      ...prev,
+      [icon]: true
+    }));
+  };
+
   // Render custom icons with SVG for interpersonal skills
-  const renderCustomIcon = (type) => {
-    const icons = {
+  const renderCustomIcon = (type: string) => {
+    // Define the possible icon keys
+    type IconKey =
+      | "curiosity"
+      | "listening"
+      | "responsibility"
+      | "flexibility"
+      | "decision"
+      | "devtools"
+      | "vscode"
+      | "surjopay"
+      | "sslcommerz"
+      | "multerjs"
+      | "bcryptjs"
+      | "nodemailerjs"
+      | "corsjs";
+
+    const icons: Record<IconKey, JSX.Element> = {
       curiosity: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -276,76 +312,82 @@ const Skills = () => {
       ),
     };
 
-    return icons[type] || icons.curiosity; // Return default if not found
+    // Safely cast and return the icon or default
+    const iconKey = type as IconKey;
+    return icons[iconKey] || icons.curiosity;
   };
 
   return (
-    <section id="skills" className="py-20 mt-16">
-      <h1 className="heading">
-        My <span className="text-purple">Skill Set</span>
-      </h1>
+    <section id="skills" className="py-20 w-full">
+      <div className="w-full px-6 sm:px-10">
+        <h1 className="heading">
+          My <span className="text-purple">Skill Set</span>
+        </h1>
 
-      <div className="flex flex-col items-center max-lg:mt-10">
-        <div className="w-full mt-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="mb-8 last:mb-0">
-              <h2 className="text-2xl font-bold mb-4 text-center">
-                {category.title}
-              </h2>
-              <div className="flex flex-wrap justify-center gap-1.5">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="inline-block m-0.5">
-                    <Button
-                      duration={Math.floor(Math.random() * 10000) + 10000}
-                      borderRadius="0.75rem"
-                      style={{
-                        background: "rgb(4,7,29)",
-                        backgroundColor:
-                          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-                        borderRadius: `calc(0.75rem * 0.96)`,
-                      }}
-                      borderClassName="h-16 w-16 opacity-[0.6] bg-[radial-gradient(#8463C7_35%,transparent_40%)]"
-                      containerClassName="!h-auto !w-auto"
-                      className="text-black dark:text-white border-neutral-200 dark:border-slate-800"
-                    >
-                      <div className="p-1.5 flex items-center gap-1">
-                        {[
-                          "curiosity",
-                          "listening",
-                          "responsibility",
-                          "flexibility",
-                          "decision",
-                          "devtools",
-                          "vscode",
-                          "surjopay",
-                          "sslcommerz",
-                          "multerjs",
-                          "bcryptjs",
-                          "nodemailerjs",
-                          "corsjs",
-                        ].includes(skill.icon) ? (
-                          renderCustomIcon(skill.icon)
-                        ) : (
-                          <img
-                            src={getLogoUrl(skill.icon)}
-                            alt={skill.name}
-                            className="w-3.5 h-3.5 object-contain"
-                            onError={(e) => {
-                              e.currentTarget.src =
-                                "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40ODYgMiAyIDYuNDg2IDIgMTJzNC40ODYgMTAgMTAgMTAgMTAtNC40ODYgMTAtMTBTMTcuNTE0IDIgMTIgMnptMCAxOGMtNC40MTEgMC04LTMuNTg5LTgtOHMzLjU4OS04IDgtOCA4IDMuNTg5IDggOC0zLjU4OSA4LTggOHoiLz48cGF0aCBkPSJNMTEgMTFoMnY2aC0yek0xMSA3aDJ2MmgtMnoiLz48L3N2Zz4=";
-                            }}
-                          />
-                        )}
-                        <span className="font-medium text-xs whitespace-nowrap">
-                          {skill.name}
-                        </span>
-                      </div>
-                    </Button>
-                  </div>
-                ))}
+        <div className="flex flex-col items-center w-full mx-auto">
+          <div className="w-full mt-8">
+            {skillCategories.map((category, categoryIndex) => (
+              <div key={categoryIndex} className="mb-16 last:mb-0">
+                <h2 className="text-2xl font-bold mb-8 text-center">
+                  {category.title}
+                </h2>
+                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div key={skillIndex} className="inline-block m-0.5">
+                      <Button
+                        duration={Math.floor(Math.random() * 10000) + 10000}
+                        borderRadius="0.75rem"
+                        style={{
+                          background: "rgb(4,7,29)",
+                          backgroundColor:
+                            "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+                          borderRadius: `calc(0.75rem * 0.96)`,
+                        }}
+                        borderClassName="h-16 w-16 opacity-[0.6] bg-[radial-gradient(#8463C7_35%,transparent_40%)]"
+                        containerClassName="!h-auto !w-auto"
+                        className="text-black dark:text-white border-neutral-200 dark:border-slate-800"
+                      >
+                        <div className="p-1.5 flex items-center gap-1">
+                          {[
+                            "curiosity",
+                            "listening",
+                            "responsibility",
+                            "flexibility",
+                            "decision",
+                            "devtools",
+                            "vscode",
+                            "surjopay",
+                            "sslcommerz",
+                            "multerjs",
+                            "bcryptjs",
+                            "nodemailerjs",
+                            "corsjs",
+                          ].includes(skill.icon) ? (
+                            <div className="h-4 w-4">
+                              {renderCustomIcon(skill.icon)}
+                            </div>
+                          ) : (
+                            <Image
+                              src={getLogoUrl(skill.icon, skill.name) as string}
+                              alt={skill.name}
+                              className="h-4 w-4 object-contain"
+                              width={16}
+                              height={16}
+                              onError={() => handleImageError(skill.icon)}
+                              unoptimized={skill.icon.includes("cdn.simpleicons.org")}
+                            />
+                          )}
+                          <span className="font-medium text-xs whitespace-nowrap">
+                            {skill.name}
+                          </span>
+                        </div>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

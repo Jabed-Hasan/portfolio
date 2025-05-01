@@ -5,14 +5,18 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import Link from "next/link";
-import { Spotlight } from "./ui/Spotlight";
 import { motion } from "framer-motion";
+import { Spotlight } from "./ui/Spotlight";
+import { ParticlesBackground } from "./ui/ParticlesBackground";
 
 const AboutMe = () => {
   return (
-    <section id="about" className="py-12 sm:py-20 text-white relative">
-      {/* Spotlights background - return to previous style */}
-      <div className="hidden sm:block">
+    <section id="about" className="py-20 w-full relative overflow-hidden">
+      {/* Particles Animation Background */}
+      <ParticlesBackground />
+
+      {/* Spotlights background */}
+      <div className="hidden sm:block relative z-10">
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
           fill="white"
@@ -24,21 +28,9 @@ const AboutMe = () => {
         <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="blue" />
       </div>
 
-      {/* Grid background with same styling as hero */}
-      <div
-        className="h-full w-full dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
-       absolute top-0 left-0 flex items-center justify-center"
-      >
-        {/* Radial gradient for the container to give a faded look */}
-        <div
-          className="absolute pointer-events-none inset-0 flex items-center justify-center
-         [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative z-10">
+      <div className="w-full px-6 sm:px-10 relative z-20">
         <motion.h2
-          className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-10 text-center"
+          className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-16 text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -46,10 +38,10 @@ const AboutMe = () => {
           ABOUT ME
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-          {/* Left profile section - fully transparent */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 w-full mx-auto">
+          {/* Left profile section */}
           <motion.div
-            className="border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col"
+            className="border border-zinc-800 rounded-lg p-6 sm:p-8 flex flex-col"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -92,11 +84,11 @@ const AboutMe = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                Furthermore, I'll be learning new technologies to stay aligned
-                with the industry trends and demand. Ultimately, I aspire to
-                become a senior software developer with a comprehensive skill
-                set and the confidence to lead projects effectively after 2-4
-                years.
+                Furthermore, I&apos;ll be learning new technologies to stay
+                aligned with the industry trends and demand. Ultimately, I
+                aspire to become a senior software developer with a
+                comprehensive skill set and the confidence to lead projects
+                effectively after 2-4 years.
               </motion.p>
 
               <motion.div
@@ -144,7 +136,7 @@ const AboutMe = () => {
                 >
                   <Link
                     href="https://x.com"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-black border-zinc-700 transition-colors"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-black transition-colors"
                   >
                     <FaXTwitter />
                   </Link>
@@ -165,9 +157,9 @@ const AboutMe = () => {
             </div>
           </motion.div>
 
-          {/* Right skills grid - fully transparent */}
+          {/* Right skills grid */}
           <div className="flex flex-col">
-            <div className="flex flex-col gap-6 h-full">
+            <div className="flex flex-col gap-8 h-full">
               <motion.div
                 className="border border-zinc-800 rounded-lg p-4 sm:p-6"
                 initial={{ opacity: 0, y: 20 }}

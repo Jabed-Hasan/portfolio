@@ -8,7 +8,7 @@ export async function GET() {
     const results = {
       dataFolder: null,
       publicFolder: null,
-      error: null
+      error: null as string | null
     };
     
     try {

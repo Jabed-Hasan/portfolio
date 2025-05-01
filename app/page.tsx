@@ -17,19 +17,17 @@ import { FloatingNav } from "@/components/ui/FloatingNavbar";
 
 const Home = () => {
   return (
-    <main className="relative bg-black-100 flex flex-col items-center justify-center overflow-hidden w-full">
-      <div className="w-full max-w-screen-lg mx-auto px-4 sm:px-6">
-        <FloatingNav navItems={navItems} />
-        <Hero />
-        <AboutMe />
-        <Skills />
-        <RecentProjects />
-        <Education />
-        <Experience />
-        <Blog />
-        <Approach />
-        <Footer />
-      </div>
+    <main className="relative bg-black-100 flex flex-col w-full overflow-hidden">
+      <FloatingNav navItems={navItems} />
+      <Hero />
+      <AboutMe />
+      <Skills />
+      <RecentProjects />
+      <Education />
+      <Experience />
+      <Blog />
+      <Approach />
+      <Footer />
     </main>
   );
 };

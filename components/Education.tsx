@@ -30,7 +30,7 @@ const Education = () => {
         My <span className="text-purple">education</span>
       </h1>
 
-      <div className="w-full max-w-5xl mx-auto mt-12 grid grid-cols-1 gap-5">
+      <div className="w-full px-2 sm:px-4 mt-12 grid grid-cols-1 gap-5">
         {education.map((edu, index) => (
           <motion.div
             key={edu.id}

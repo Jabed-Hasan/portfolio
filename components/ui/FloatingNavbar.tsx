@@ -8,7 +8,14 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { cn, scrollToSection } from "@/lib/utils";
-import { FaHome, FaUser, FaCode, FaBriefcase, FaNewspaper, FaRocket } from "react-icons/fa";
+import {
+  FaHome,
+  FaUser,
+  FaCode,
+  FaBriefcase,
+  FaNewspaper,
+  FaRocket,
+} from "react-icons/fa";
 
 export const FloatingNav = ({
   navItems,
@@ -91,14 +98,21 @@ export const FloatingNav = ({
 
   // Map section names to icons
   const getIconForNavItem = (name: string) => {
-    switch(name.toLowerCase()) {
-      case 'home': return <FaHome className="text-lg" />;
-      case 'about': return <FaUser className="text-lg" />;
-      case 'skills': return <FaCode className="text-lg" />;
-      case 'journey': return <FaRocket className="text-lg" />;
-      case 'projects': return <FaBriefcase className="text-lg" />;
-      case 'blogs': return <FaNewspaper className="text-lg" />;
-      default: return <FaHome className="text-lg" />;
+    switch (name.toLowerCase()) {
+      case "home":
+        return <FaHome className="text-lg" />;
+      case "about":
+        return <FaUser className="text-lg" />;
+      case "skills":
+        return <FaCode className="text-lg" />;
+      case "journey":
+        return <FaRocket className="text-lg" />;
+      case "projects":
+        return <FaBriefcase className="text-lg" />;
+      case "blogs":
+        return <FaNewspaper className="text-lg" />;
+      default:
+        return <FaHome className="text-lg" />;
     }
   };
 
@@ -119,14 +133,19 @@ export const FloatingNav = ({
             duration: 0.2,
           }}
           className={cn(
-            "hidden md:flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-6 sm:px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-4",
+            "hidden md:flex fixed z-[5000] top-0 left-0 right-auto ml-[30%] px-6 sm:px-10 py-5 rounded-b-lg border-b border-l border-r border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-start space-x-6",
             className
           )}
           style={{
             backdropFilter: "blur(16px) saturate(180%)",
             backgroundColor: "rgba(17, 25, 40, 0.75)",
-            borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.125)",
+            borderRadius: "0 0 12px 12px",
+            borderTop: "none",
+            borderLeft: "1px solid rgba(255, 255, 255, 0.125)",
+            borderRight: "1px solid rgba(255, 255, 255, 0.125)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.125)",
+            width: "auto",
+            transform: "none",
           }}
         >
           {navItems.map((navItem: any, idx: number) => (
@@ -149,7 +168,7 @@ export const FloatingNav = ({
 
       {/* Mobile Bottom Navigation */}
       <div className="md:hidden fixed bottom-4 left-0 right-0 z-[5000] flex justify-center">
-        <div 
+        <div
           className="flex items-center justify-between px-3 py-2 rounded-full gap-1 bg-black border border-gray-800"
           style={{
             backdropFilter: "blur(16px) saturate(180%)",
