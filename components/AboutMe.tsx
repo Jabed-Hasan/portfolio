@@ -9,9 +9,12 @@ import { Spotlight } from "./ui/Spotlight";
 
 const AboutMe = () => {
   return (
-    <section id="about" className="py-20 text-white relative min-h-screen">
+    <section
+      id="about"
+      className="py-12 sm:py-20 text-white relative min-h-screen"
+    >
       {/* Spotlights background - return to previous style */}
-      <div>
+      <div className="hidden sm:block">
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
           fill="white"
@@ -35,14 +38,16 @@ const AboutMe = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-10 relative z-10">
-        <h2 className="text-4xl font-bold mb-10 text-center">ABOUT ME</h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative z-10">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-10 text-center">
+          ABOUT ME
+        </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
           {/* Left profile section - fully transparent */}
-          <div className="lg:col-span-2 border border-zinc-800 rounded-lg p-6 flex flex-col">
-            <div className="flex items-center mb-4">
-              <div className="w-16 h-16 mr-4 bg-indigo-600 rounded-full flex items-center justify-center text-xl font-bold">
+          <div className="lg:col-span-2 border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col">
+            <div className="flex flex-col sm:flex-row sm:items-center mb-4">
+              <div className="w-16 h-16 mb-3 sm:mb-0 sm:mr-4 bg-indigo-600 rounded-full flex items-center justify-center text-xl font-bold">
                 JN
               </div>
               <div>
@@ -52,7 +57,7 @@ const AboutMe = () => {
             </div>
 
             <div className="mt-4">
-              <p className="text-gray-300 mb-4">
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">
                 After more than a year of learning, I have developed a solid
                 foundation in the MERN stack and have experience in building
                 dynamic and scalable applications. In the coming year, my goal
@@ -63,7 +68,7 @@ const AboutMe = () => {
                 exploring these technologies.
               </p>
 
-              <p className="text-gray-300 mb-8">
+              <p className="text-gray-300 mb-4 sm:mb-8 text-sm sm:text-base">
                 Furthermore, I'll be learning new technologies to stay aligned
                 with the industry trends and demand. Ultimately, I aspire to
                 become a senior software developer with a comprehensive skill
@@ -71,34 +76,34 @@ const AboutMe = () => {
                 years.
               </p>
 
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4 items-center">
                 <Link
                   href="https://linkedin.com"
-                  className="w-10 h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
                 >
                   <FaLinkedinIn />
                 </Link>
                 <Link
                   href="https://github.com"
-                  className="w-10 h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-gray-700 transition-colors"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-gray-700 transition-colors"
                 >
                   <FaGithub />
                 </Link>
                 <Link
                   href="https://facebook.com"
-                  className="w-10 h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-blue-800 transition-colors"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-blue-800 transition-colors"
                 >
                   <FaFacebookF />
                 </Link>
                 <Link
                   href="https://x.com"
-                  className="w-10 h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-black border-zinc-700 transition-colors"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-black border-zinc-700 transition-colors"
                 >
                   <FaXTwitter />
                 </Link>
                 <Link
                   href="/resume.pdf"
-                  className="border border-white rounded px-4 py-2 ml-auto hover:bg-white hover:text-black transition-colors flex items-center"
+                  className="border border-white rounded px-3 py-1.5 sm:px-4 sm:py-2 mt-3 sm:mt-0 sm:ml-auto text-sm hover:bg-white hover:text-black transition-colors flex items-center"
                 >
                   View Resume
                 </Link>
@@ -107,46 +112,54 @@ const AboutMe = () => {
           </div>
 
           {/* Right skills grid - fully transparent */}
-          <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border border-zinc-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <div className="text-3xl mr-4">📦</div>
-                <h3 className="text-xl font-bold">Full-Stack Expertise</h3>
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+              <div className="flex items-center mb-3 sm:mb-4">
+                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">📦</div>
+                <h3 className="text-lg sm:text-xl font-bold">
+                  Full-Stack Expertise
+                </h3>
               </div>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 Proficient in building end-to-end applications TypeScript,
                 MongoDB, Express.JS, React.
               </p>
             </div>
 
-            <div className="border border-zinc-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <div className="text-3xl mr-4">🔤</div>
-                <h3 className="text-xl font-bold">English Proficiency</h3>
+            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+              <div className="flex items-center mb-3 sm:mb-4">
+                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🔤</div>
+                <h3 className="text-lg sm:text-xl font-bold">
+                  English Proficiency
+                </h3>
               </div>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 I have strong English communication skills, both written and
                 verbal.
               </p>
             </div>
 
-            <div className="border border-zinc-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <div className="text-3xl mr-4">💻</div>
-                <h3 className="text-xl font-bold">Modern Front-End Skills</h3>
+            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+              <div className="flex items-center mb-3 sm:mb-4">
+                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">💻</div>
+                <h3 className="text-lg sm:text-xl font-bold">
+                  Modern Front-End Skills
+                </h3>
               </div>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 Focused on modern front-end development with React, Tailwind
                 CSS, Redux and Next.js.
               </p>
             </div>
 
-            <div className="border border-zinc-800 rounded-lg p-6">
-              <div className="flex items-center mb-4">
-                <div className="text-3xl mr-4">🔄</div>
-                <h3 className="text-xl font-bold">Continuous Learner</h3>
+            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+              <div className="flex items-center mb-3 sm:mb-4">
+                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🔄</div>
+                <h3 className="text-lg sm:text-xl font-bold">
+                  Continuous Learner
+                </h3>
               </div>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 Moving forward, I aim to master modern technologies like
                 PostgreSQL, Prisma, GraphQL, and Docker
               </p>
