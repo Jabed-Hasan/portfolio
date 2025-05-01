@@ -79,6 +79,18 @@ export const projects = [
     img: "/p1.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
     link: "/ui.earth.com",
+    github: "https://github.com/username/solar-system-3d",
+    fullDescription:
+      "This project is an interactive 3D simulation of our solar system built with Three.js and React. Users can explore the planets in detail, learning about their characteristics and features. The application features realistic textures, orbital mechanics, and informative data about each celestial body. I implemented smooth camera transitions and interactive controls to create an engaging educational experience.",
+    features: [
+      "Realistic 3D planet models with accurate textures",
+      "Interactive orbital paths and planet rotation",
+      "Detailed information panels for each planet",
+      "Smooth camera transitions and zoom functionality",
+      "Responsive design for various screen sizes",
+    ],
+    challenges:
+      "Implementing accurate orbital mechanics while maintaining performance was challenging. I had to optimize the 3D rendering process and use level of detail techniques to ensure smooth performance across different devices.",
   },
   {
     id: 2,
@@ -87,6 +99,18 @@ export const projects = [
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
     link: "/ui.yoom.com",
+    github: "https://github.com/username/yoom-app",
+    fullDescription:
+      "Yoom is a modern video conferencing application built with Next.js and Stream API. It offers a seamless and intuitive interface for users to connect with colleagues and friends. The app features high-quality video and audio, screen sharing capabilities, chat functionality, and meeting scheduling. I focused on creating a clean, user-friendly interface that makes video conferencing accessible to everyone.",
+    features: [
+      "High-quality video and audio streaming",
+      "Screen sharing and presentation mode",
+      "In-meeting chat and reactions",
+      "Meeting scheduling and calendar integration",
+      "Recording functionality and cloud storage",
+    ],
+    challenges:
+      "Ensuring real-time communication with minimal latency across different network conditions was a significant challenge. I implemented adaptive streaming quality and optimized the WebRTC connection process to create a reliable experience.",
   },
   {
     id: 3,
@@ -95,6 +119,18 @@ export const projects = [
     img: "/p3.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
     link: "/ui.aiimg.com",
+    github: "https://github.com/username/ai-image-saas",
+    fullDescription:
+      "This SaaS application combines the creative power of AI with intuitive design tools similar to Canva. Users can generate and edit images using AI, with a flexible payment and credits system. The application features user authentication, subscription management, and a dashboard for monitoring usage. I implemented integrations with modern AI image generation APIs and built a robust payment processing system.",
+    features: [
+      "AI-powered image generation and editing",
+      "Drag-and-drop design interface",
+      "Template library and asset management",
+      "Subscription tiers and pay-as-you-go options",
+      "Usage analytics and dashboard",
+    ],
+    challenges:
+      "Balancing the computational requirements of AI processing with responsive user experience was challenging. I implemented background processing queues and optimized the frontend to provide real-time feedback while AI operations run.",
   },
   {
     id: 4,
@@ -103,6 +139,18 @@ export const projects = [
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
     link: "/ui.apple.com",
+    github: "https://github.com/username/apple-iphone-3d",
+    fullDescription:
+      "This project is a recreation of Apple's iPhone 15 Pro website, featuring stunning animations and 3D effects. I used GSAP for smooth, timeline-based animations and Three.js for interactive 3D models. The website showcases the iPhone from multiple angles with animated transitions and feature highlights. I paid special attention to performance optimization to ensure smooth scrolling and transitions even with complex 3D elements.",
+    features: [
+      "Realistic 3D iPhone model with interactive rotation",
+      "Scroll-triggered animations and reveals",
+      "Feature showcase with animated transitions",
+      "Color selection with real-time 3D model updates",
+      "Responsive design that adapts to all screen sizes",
+    ],
+    challenges:
+      "Creating smooth transitions between complex 3D scenes while maintaining high performance was difficult. I implemented techniques like model instancing, texture compression, and progressive loading to optimize the experience.",
   },
 ];
 
