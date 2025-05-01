@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 // Import AboutMe component instead of Grid
 import AboutMe from "@/components/AboutMe";
 import Footer from "@/components/Footer";
+import Skills from "@/components/Skills";
 import Clients from "@/components/Clients";
 import Approach from "@/components/Approach";
 import Experience from "@/components/Experience";
@@ -21,6 +22,7 @@ const Home = () => {
         <Hero />
         <AboutMe />
         <RecentProjects />
+        <Skills />
         <Clients />
         <Experience />
         <Approach />

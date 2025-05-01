@@ -58,7 +58,13 @@
     "title": "Animated Apple Iphone 3D Website",
     "des": "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
     "img": "/p4.svg",
-    "iconLists": ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    "iconLists": [
+      "/next.svg",
+      "/tail.svg",
+      "/ts.svg",
+      "/three.svg",
+      "/gsap.svg"
+    ],
     "link": "/ui.apple.com",
     "github": "https://github.com/username/apple-iphone-3d",
     "fullDescription": "This project is a recreation of Apple's iPhone 15 Pro website, featuring stunning animations and 3D effects. I used GSAP for smooth, timeline-based animations and Three.js for interactive 3D models. The website showcases the iPhone from multiple angles with animated transitions and feature highlights. I paid special attention to performance optimization to ensure smooth scrolling and transitions even with complex 3D elements.",
@@ -71,4 +77,4 @@
     ],
     "challenges": "Creating smooth transitions between complex 3D scenes while maintaining high performance was difficult. I implemented techniques like model instancing, texture compression, and progressive loading to optimize the experience."
   }
-] 
+]
