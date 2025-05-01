@@ -1,0 +1,445 @@
+[
+  {
+    "slug": "mastering-react-performance",
+    "title": "Mastering React Performance Optimization",
+    "date": "June 15, 2023",
+    "author": "Md Jabed Hasan",
+    "authorRole": "MERN stack developer",
+    "authorImage": "/profile.svg",
+    "image": "/images/react-performance.webp",
+    "tag": "React",
+    "excerpt": "Learn how to identify and fix performance bottlenecks in your React applications using profiling tools, memoization, and code-splitting techniques for optimal user experience.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "As React applications grow in complexity, performance issues can become more apparent. Identifying and resolving these bottlenecks is crucial for providing a smooth user experience. In this article, I'll share strategies and techniques for optimizing React applications, focusing on real-world scenarios that developers commonly face."
+      },
+      {
+        "type": "heading",
+        "text": "Identifying Performance Issues"
+      },
+      {
+        "type": "paragraph",
+        "text": "Before optimizing your React app, you need to identify where performance issues occur. React DevTools Profiler is an essential tool that helps you locate components that are rendering unnecessarily or taking too long to render. To use the Profiler effectively, record a session while interacting with your app, then analyze which components are rendering and how long they take."
+      },
+      {
+        "type": "heading",
+        "text": "Memoization Techniques"
+      },
+      {
+        "type": "paragraph",
+        "text": "React offers several memoization techniques to prevent unnecessary re-renders. The React.memo higher-order component is useful for functional components, preventing re-renders when props remain unchanged. Similarly, useMemo can memoize expensive calculations, while useCallback helps maintain referential equality for function props."
+      },
+      {
+        "type": "code",
+        "language": "jsx",
+        "content": "import React, { useMemo, useCallback } from 'react';\n\nconst MyComponent = ({ data, onItemClick }) => {\n  // Memoize expensive calculations\n  const processedData = useMemo(() => {\n    return data.map(item => transformItem(item));\n  }, [data]);\n\n  // Memoize callback functions\n  const handleClick = useCallback((id) => {\n    onItemClick(id);\n  }, [onItemClick]);\n\n  return (\n    <div>\n      {processedData.map(item => (\n        <Item key={item.id} item={item} onClick={handleClick} />\n      ))}\n    </div>\n  );\n};\n\n// Prevent re-renders when props don't change\nexport default React.memo(MyComponent);"
+      },
+      {
+        "type": "heading",
+        "text": "Code Splitting and Lazy Loading"
+      },
+      {
+        "type": "paragraph",
+        "text": "Large React applications can benefit significantly from code splitting. By using dynamic imports with React.lazy and Suspense, you can split your code into smaller chunks that load on demand. This reduces the initial bundle size and improves loading times, especially for routes or components that aren't immediately needed."
+      },
+      {
+        "type": "code",
+        "language": "jsx",
+        "content": "import React, { Suspense, lazy } from 'react';\nimport { Routes, Route } from 'react-router-dom';\nimport Loading from './components/Loading';\n\n// Lazy load routes\nconst Dashboard = lazy(() => import('./pages/Dashboard'));\nconst Settings = lazy(() => import('./pages/Settings'));\nconst Profile = lazy(() => import('./pages/Profile'));\n\nfunction App() {\n  return (\n    <Suspense fallback={<Loading />}>\n      <Routes>\n        <Route path=\"/\" element={<Dashboard />} />\n        <Route path=\"/settings\" element={<Settings />} />\n        <Route path=\"/profile\" element={<Profile />} />\n      </Routes>\n    </Suspense>\n  );\n}"
+      },
+      {
+        "type": "heading",
+        "text": "Virtualization for Long Lists"
+      },
+      {
+        "type": "paragraph",
+        "text": "When rendering long lists or tables, virtualization can significantly improve performance. Libraries like react-window or react-virtualized render only the items currently visible in the viewport, reducing the number of DOM nodes and improving scrolling performance."
+      },
+      {
+        "type": "paragraph",
+        "text": "Optimizing React applications is an iterative process that requires a good understanding of how React works internally. By applying these techniques thoughtfully, you can create fast, responsive applications that provide a great user experience, even as your application grows in complexity."
+      }
+    ]
+  },
+  {
+    "slug": "building-accessible-web-applications",
+    "title": "Building Accessible Web Applications",
+    "date": "May 22, 2023",
+    "author": "Md Jabed Hasan",
+    "authorRole": "MERN stack developer",
+    "authorImage": "/profile.svg",
+    "image": "/images/accessibility-web-application.webp",
+    "tag": "Accessibility",
+    "excerpt": "A comprehensive guide to creating inclusive web experiences that work for everyone, covering ARIA attributes, keyboard navigation, and screen reader compatibility.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Web accessibility is often overlooked in the development process, yet it's crucial for ensuring that your applications can be used by everyone, regardless of their abilities or disabilities. In this guide, I'll walk through practical steps to make your web applications more accessible."
+      },
+      {
+        "type": "heading",
+        "text": "Understanding Web Accessibility"
+      },
+      {
+        "type": "paragraph",
+        "text": "Web accessibility means designing and developing websites and applications that can be used by people with disabilities. This includes visual, auditory, physical, speech, cognitive, and neurological disabilities. The Web Content Accessibility Guidelines (WCAG) provide a framework for making web content more accessible."
+      },
+      {
+        "type": "heading",
+        "text": "Semantic HTML: The Foundation of Accessibility"
+      },
+      {
+        "type": "paragraph",
+        "text": "The first step in building accessible applications is using semantic HTML. Semantic elements like <header>, <nav>, <main>, and <footer> provide important landmarks for screen readers and other assistive technologies. They help users understand the structure of your page and navigate through it more easily."
+      },
+      {
+        "type": "heading",
+        "text": "ARIA Attributes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Accessible Rich Internet Applications (ARIA) attributes enhance HTML's accessibility when native HTML doesn't provide all the accessibility features needed. ARIA can modify existing element semantics or add semantics to elements where they don't exist."
+      },
+      {
+        "type": "code",
+        "language": "html",
+        "content": "<!-- A toggle button -->\n<button\n  aria-pressed=\"false\"\n  onClick=\"toggleState(this)\"\n>\n  Toggle Feature\n</button>\n\n<!-- A required form field -->\n<label for=\"name\">Name (required)</label>\n<input\n  id=\"name\"\n  aria-required=\"true\"\n/>"
+      },
+      {
+        "type": "heading",
+        "text": "Keyboard Navigation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Many users navigate websites using only a keyboard, so ensuring your site is fully navigable without a mouse is essential. All interactive elements should be focusable and operable with keyboard commands. Use tabindex appropriately to manage focus order, and ensure visible focus indicators are present."
+      },
+      {
+        "type": "paragraph",
+        "text": "Building accessible applications isn't just about compliance—it's about creating inclusive experiences that everyone can use. By incorporating these practices into your development workflow, you'll create applications that work better for all users, regardless of their abilities."
+      }
+    ]
+  },
+  {
+    "slug": "future-of-frontend-development",
+    "title": "The Future of Frontend Development",
+    "date": "April 10, 2023",
+    "author": "Md Jabed Hasan",
+    "authorRole": "MERN stack developer",
+    "authorImage": "/profile.svg",
+    "image": "/images/Future-of-Frontend-Development.webp",
+    "tag": "Frontend",
+    "excerpt": "Exploring emerging trends like AI-assisted coding, Web Components, and micro-frontends that are shaping the future of web development and what skills to learn.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "The landscape of frontend development is constantly evolving, with new tools, frameworks, and methodologies emerging at a rapid pace. In this article, I'll explore some of the most significant trends that are likely to shape the future of frontend development."
+      },
+      {
+        "type": "heading",
+        "text": "AI-Assisted Development"
+      },
+      {
+        "type": "paragraph",
+        "text": "AI-powered tools are transforming how we write code. From GitHub Copilot to Cursor, these tools can generate code snippets, complete functions, and even explain complex code. As these tools mature, they'll become indispensable parts of a developer's workflow, handling repetitive tasks and allowing developers to focus on higher-level problem-solving."
+      },
+      {
+        "type": "heading",
+        "text": "Web Components and Framework Agnosticism"
+      },
+      {
+        "type": "paragraph",
+        "text": "Web Components represent a shift towards more framework-agnostic development. By using custom elements, shadow DOM, and HTML templates, developers can create reusable components that work across different frameworks or with no framework at all. This approach reduces dependency on specific frameworks and improves long-term maintainability."
+      },
+      {
+        "type": "heading",
+        "text": "Micro-Frontends"
+      },
+      {
+        "type": "paragraph",
+        "text": "Micro-frontend architecture extends microservices concepts to frontend development. By breaking down frontend applications into smaller, independent pieces that can be developed, tested, and deployed separately, teams can work more autonomously and scale development more effectively."
+      },
+      {
+        "type": "code",
+        "language": "html",
+        "content": "<!-- Main application shell -->\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Micro-Frontend Example</title>\n</head>\n<body>\n  <header>Common Header</header>\n  \n  <!-- Each micro-frontend loads independently -->\n  <div id=\"product-listing\">\n    <script src=\"https://team-a.example.com/product-listing/entry.js\"></script>\n  </div>\n  \n  <div id=\"shopping-cart\">\n    <script src=\"https://team-b.example.com/shopping-cart/entry.js\"></script>\n  </div>\n  \n  <div id=\"user-profile\">\n    <script src=\"https://team-c.example.com/user-profile/entry.js\"></script>\n  </div>\n  \n  <footer>Common Footer</footer>\n</body>\n</html>"
+      },
+      {
+        "type": "heading",
+        "text": "WebAssembly (Wasm)"
+      },
+      {
+        "type": "paragraph",
+        "text": "WebAssembly is opening new possibilities for web applications by allowing code written in languages like C++, Rust, and Go to run in the browser at near-native speed. This enables more performance-intensive applications like video editing, 3D rendering, and machine learning to run directly in the browser."
+      },
+      {
+        "type": "paragraph",
+        "text": "The future of frontend development will require adaptability and continuous learning. By staying informed about these trends and focusing on fundamental concepts rather than specific frameworks, developers can position themselves for success in this rapidly evolving field."
+      }
+    ]
+  },
+  {
+    "slug": "css-to-tailwind-journey",
+    "title": "From CSS to Tailwind: My Journey",
+    "date": "March 5, 2023",
+    "author": "Md Jabed Hasan",
+    "authorRole": "MERN stack developer",
+    "authorImage": "/profile.svg",
+    "image": "/images/From-CSS-to-Tailwind-My-Journey.webp",
+    "tag": "CSS",
+    "excerpt": "How I transitioned from writing custom CSS to embracing utility-first frameworks and the significant productivity benefits I've experienced in my development workflow.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "When I first started web development, I was a purist when it came to CSS. I meticulously crafted custom stylesheets, organized with my own naming conventions, and prided myself on writing clean, reusable CSS. I was skeptical of utility-first frameworks like Tailwind CSS, viewing them as cluttered and against the principles of separation of concerns. This article chronicles my journey from a CSS traditionalist to a Tailwind enthusiast."
+      },
+      {
+        "type": "heading",
+        "text": "The Traditional CSS Approach"
+      },
+      {
+        "type": "paragraph",
+        "text": "Like many developers, I started with traditional CSS approaches. I would create separate CSS files with carefully organized selectors and classes. I followed naming methodologies like BEM (Block Element Modifier) to maintain consistency and avoid specificity conflicts. This approach worked, but it had drawbacks:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. Constantly switching between HTML and CSS files\n2. CSS files growing larger over time\n3. Difficulty in maintaining consistent design systems\n4. The cognitive load of coming up with meaningful class names\n5. Unused CSS accumulating as the project evolved"
+      },
+      {
+        "type": "heading",
+        "text": "The Turning Point"
+      },
+      {
+        "type": "paragraph",
+        "text": "My perspective changed when I joined a team working on a large-scale application with tight deadlines. A colleague suggested trying Tailwind CSS to speed up our development process. Reluctantly, I agreed to give it a try for a small component."
+      },
+      {
+        "type": "code",
+        "language": "html",
+        "content": "<!-- Traditional CSS approach -->\n<div class=\"card\">\n  <div class=\"card-header\">\n    <h2 class=\"card-title\">Product Name</h2>\n  </div>\n  <div class=\"card-body\">\n    <p class=\"card-description\">Product description goes here.</p>\n    <button class=\"btn btn-primary\">Add to Cart</button>\n  </div>\n</div>\n\n<!-- Tailwind CSS approach -->\n<div class=\"rounded-lg shadow-md overflow-hidden bg-white\">\n  <div class=\"px-6 py-4 bg-gray-50\">\n    <h2 class=\"font-bold text-xl text-gray-800\">Product Name</h2>\n  </div>\n  <div class=\"px-6 py-4\">\n    <p class=\"text-gray-700 mb-4\">Product description goes here.</p>\n    <button class=\"bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded\">\n      Add to Cart\n    </button>\n  </div>\n</div>"
+      },
+      {
+        "type": "heading",
+        "text": "The Benefits I Discovered"
+      },
+      {
+        "type": "paragraph",
+        "text": "To my surprise, I found several significant benefits with Tailwind:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **Development Speed**: I could build UIs much faster without context-switching between files.\n\n2. **Consistency**: Tailwind's design system enforced consistency in spacing, colors, and typography.\n\n3. **Responsive Design**: Making components responsive became intuitive with Tailwind's responsive modifiers.\n\n4. **Bundle Size**: With proper configuration and purging, the final CSS bundle was actually smaller than my custom CSS approaches.\n\n5. **Team Collaboration**: New team members could understand and contribute to the codebase much faster without learning our custom CSS conventions."
+      },
+      {
+        "type": "heading",
+        "text": "Addressing Common Criticisms"
+      },
+      {
+        "type": "paragraph",
+        "text": "I had to confront my initial objections to utility-first CSS:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. **\"HTML looks messy\"**: While the markup initially appears cluttered, I found that component extraction in frameworks like React, Vue, or even Tailwind's @apply directive addressed this concern effectively.\n\n2. **\"It violates separation of concerns\"**: I realized that in modern component-based architectures, components already encapsulate HTML, JS, and styling together. Tailwind aligned well with this paradigm.\n\n3. **\"It's harder to maintain\"**: In practice, I found the opposite to be true. Changes were more localized and had fewer side effects compared to traditional CSS."
+      },
+      {
+        "type": "heading",
+        "text": "Finding Balance"
+      },
+      {
+        "type": "paragraph",
+        "text": "My approach now combines the best of both worlds. I use Tailwind for rapid component development and consistent design implementation, but I'm not dogmatic about it. For complex animations or highly specific styling needs, I still write custom CSS. The key is knowing when each approach makes the most sense."
+      },
+      {
+        "type": "paragraph",
+        "text": "Transitioning from traditional CSS to Tailwind has significantly improved my development workflow and productivity. While it required an initial mindset shift, the benefits have far outweighed the learning curve. If you're a CSS purist like I was, I encourage you to give utility-first frameworks a fair chance—you might be surprised by how they transform your development experience."
+      }
+    ]
+  },
+  {
+    "slug": "building-nextjs-fullstack-app",
+    "title": "Building a Full-Stack App with Next.js 14",
+    "date": "February 18, 2023",
+    "author": "Md Jabed Hasan",
+    "authorRole": "MERN stack developer",
+    "authorImage": "/profile.svg",
+    "image": "/images/Building-a-Full-Stack-App-with-Next.js-14.jpg",
+    "tag": "Next.js",
+    "excerpt": "A step-by-step tutorial on creating a modern web application with server components, data fetching, and authentication using the latest Next.js features.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Next.js has evolved into a powerful full-stack framework that simplifies building modern web applications. With the release of Next.js 14, developers have access to even more features that bridge the gap between frontend and backend development. In this tutorial, I'll walk through creating a complete full-stack application with Next.js 14, focusing on the new server components, improved data fetching, and authentication patterns."
+      },
+      {
+        "type": "heading",
+        "text": "Project Setup"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let's start by creating a new Next.js 14 project with the App Router. The App Router is the recommended approach for new applications as it leverages React Server Components and provides a more intuitive routing system."
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "content": "# Create a new project\nnpx create-next-app@latest my-fullstack-app\n\n# Navigate to the project directory\ncd my-fullstack-app"
+      },
+      {
+        "type": "paragraph",
+        "text": "During the setup, you'll be prompted to choose various options. Select TypeScript for type safety, ESLint for code quality, Tailwind CSS for styling, and the App Router for the newer routing system."
+      },
+      {
+        "type": "heading",
+        "text": "Understanding Server and Client Components"
+      },
+      {
+        "type": "paragraph",
+        "text": "One of the most significant features of Next.js 14 is the improved implementation of React Server Components. By default, all components in the App Router are server components unless specified otherwise. This distinction is crucial as it affects how your components are rendered and what features they can use."
+      },
+      {
+        "type": "paragraph",
+        "text": "Server Components:\n- Render on the server and send HTML to the client\n- Can access server-side resources directly (databases, file system, etc.)\n- Cannot use browser APIs or React hooks\n- Reduce client-side JavaScript bundle size\n\nClient Components:\n- Hydrate on the client and enable interactivity\n- Can use browser APIs and React hooks\n- Cannot directly access server-side resources\n- Are marked with the 'use client' directive at the top of the file"
+      },
+      {
+        "type": "code",
+        "language": "jsx",
+        "content": "// app/components/ServerComponent.jsx\n// No directive needed - this is a Server Component by default\nexport default function ServerComponent() {\n  return <div>This renders on the server</div>;\n}\n\n// app/components/ClientComponent.jsx\n'use client';\n\nimport { useState } from 'react';\n\nexport default function ClientComponent() {\n  const [count, setCount] = useState(0);\n  \n  return (\n    <div>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(count + 1)}>Increment</button>\n    </div>\n  );\n}"
+      },
+      {
+        "type": "heading",
+        "text": "Setting Up the Database"
+      },
+      {
+        "type": "paragraph",
+        "text": "For our full-stack application, we'll need a database. Prisma is an excellent ORM that works well with Next.js. Let's set it up:"
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "content": "# Install Prisma\nnpm install prisma @prisma/client\n\n# Initialize Prisma\nnpx prisma init"
+      },
+      {
+        "type": "paragraph",
+        "text": "This creates a `prisma` directory with a schema file. Let's define a simple schema for a blog application:"
+      },
+      {
+        "type": "code",
+        "language": "prisma",
+        "content": "// prisma/schema.prisma\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n}\n\nmodel User {\n  id       String   @id @default(cuid())\n  email    String   @unique\n  name     String?\n  password String\n  posts    Post[]\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Post {\n  id       String   @id @default(cuid())\n  title    String\n  content  String?\n  published Boolean  @default(false)\n  author   User     @relation(fields: [authorId], references: [id])\n  authorId String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}"
+      },
+      {
+        "type": "heading",
+        "text": "Implementing Authentication"
+      },
+      {
+        "type": "paragraph",
+        "text": "Authentication is a critical aspect of most applications. Next.js 14 works well with NextAuth.js (now known as Auth.js), which provides a simple way to implement authentication:"
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "content": "npm install next-auth bcrypt"
+      },
+      {
+        "type": "paragraph",
+        "text": "Now, let's implement the authentication API routes and components. First, set up the Auth.js configuration:"
+      },
+      {
+        "type": "code",
+        "language": "typescript",
+        "content": "// app/api/auth/[...nextauth]/route.ts\nimport NextAuth from 'next-auth';\nimport CredentialsProvider from 'next-auth/providers/credentials';\nimport { PrismaAdapter } from '@auth/prisma-adapter';\nimport { PrismaClient } from '@prisma/client';\nimport bcrypt from 'bcrypt';\n\nconst prisma = new PrismaClient();\n\nexport const authOptions = {\n  adapter: PrismaAdapter(prisma),\n  providers: [\n    CredentialsProvider({\n      name: 'Credentials',\n      credentials: {\n        email: { label: 'Email', type: 'email' },\n        password: { label: 'Password', type: 'password' },\n      },\n      async authorize(credentials) {\n        if (!credentials?.email || !credentials?.password) {\n          return null;\n        }\n\n        const user = await prisma.user.findUnique({\n          where: { email: credentials.email },\n        });\n\n        if (!user || !user.password) {\n          return null;\n        }\n\n        const passwordMatch = await bcrypt.compare(\n          credentials.password,\n          user.password\n        );\n\n        if (!passwordMatch) {\n          return null;\n        }\n\n        return {\n          id: user.id,\n          email: user.email,\n          name: user.name,\n        };\n      },\n    }),\n  ],\n  session: {\n    strategy: 'jwt',\n  },\n  callbacks: {\n    async session({ session, token }) {\n      if (token && session.user) {\n        session.user.id = token.sub;\n      }\n      return session;\n    },\n  },\n};\n\nconst handler = NextAuth(authOptions);\nexport { handler as GET, handler as POST };"
+      },
+      {
+        "type": "heading",
+        "text": "Data Fetching in Next.js 14"
+      },
+      {
+        "type": "paragraph",
+        "text": "Next.js 14 introduces a simplified data fetching approach with the fetch API directly in Server Components. This replaces the need for getServerSideProps or getStaticProps in many cases:"
+      },
+      {
+        "type": "code",
+        "language": "jsx",
+        "content": "// app/posts/page.tsx\nimport { prisma } from '@/lib/prisma';\n\nexport default async function PostsPage() {\n  // This runs on the server\n  const posts = await prisma.post.findMany({\n    where: { published: true },\n    include: { author: true },\n    orderBy: { createdAt: 'desc' },\n  });\n\n  return (\n    <div className=\"max-w-4xl mx-auto py-8\">\n      <h1 className=\"text-3xl font-bold mb-8\">Blog Posts</h1>\n      <div className=\"grid gap-6\">\n        {posts.map((post) => (\n          <article key={post.id} className=\"p-6 bg-white rounded-lg shadow\">\n            <h2 className=\"text-xl font-semibold mb-2\">{post.title}</h2>\n            <p className=\"text-gray-600 mb-4\">\n              By {post.author.name} • {new Date(post.createdAt).toLocaleDateString()}\n            </p>\n            <p className=\"text-gray-700\">\n              {post.content?.substring(0, 150)}...\n            </p>\n            <a\n              href={`/posts/${post.id}`}\n              className=\"inline-block mt-4 text-blue-600 hover:underline\"\n            >\n              Read more →\n            </a>\n          </article>\n        ))}\n      </div>\n    </div>\n  );\n}"
+      },
+      {
+        "type": "heading",
+        "text": "Creating API Routes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Next.js 14 has a new approach to API routes in the App Router. Instead of creating files in the `/api` directory, you now create a `route.js` file in the appropriate app directory:"
+      },
+      {
+        "type": "code",
+        "language": "typescript",
+        "content": "// app/api/posts/route.ts\nimport { NextResponse } from 'next/server';\nimport { getServerSession } from 'next-auth';\nimport { prisma } from '@/lib/prisma';\nimport { authOptions } from '../auth/[...nextauth]/route';\n\nexport async function POST(request: Request) {\n  const session = await getServerSession(authOptions);\n  \n  if (!session || !session.user) {\n    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });\n  }\n  \n  const data = await request.json();\n  const { title, content } = data;\n  \n  if (!title) {\n    return NextResponse.json(\n      { error: 'Title is required' },\n      { status: 400 }\n    );\n  }\n  \n  try {\n    const post = await prisma.post.create({\n      data: {\n        title,\n        content,\n        authorId: session.user.id,\n      },\n    });\n    \n    return NextResponse.json(post, { status: 201 });\n  } catch (error) {\n    return NextResponse.json(\n      { error: 'Error creating post' },\n      { status: 500 }\n    );\n  }\n}"
+      },
+      {
+        "type": "paragraph",
+        "text": "Next.js 14 provides a powerful foundation for building full-stack applications. By leveraging Server Components, integrated data fetching, and streamlined API routes, you can create performant, maintainable applications with less code and better user experiences. This tutorial covered the basics, but you can extend these concepts to build even more complex applications with advanced features like real-time updates, file uploads, and more."
+      }
+    ]
+  },
+  {
+    "slug": "sql-vs-nosql-database-choice",
+    "title": "SQL vs NoSQL: Choosing the Right Database",
+    "date": "January 30, 2023",
+    "author": "Md Jabed Hasan",
+    "authorRole": "MERN stack developer",
+    "authorImage": "/profile.svg",
+    "image": "/images/sql-vs-nosql.jpg",
+    "tag": "Databases",
+    "excerpt": "An exploration of SQL vs NoSQL databases, their key differences, and how to choose the right one for your specific application needs and use cases.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Databases are the backbone of modern applications, and choosing the right type can significantly impact the performance, scalability, and maintainability of your software. The two primary types of databases are SQL (relational) and NoSQL (non-relational). Each has its strengths and weaknesses, making them suitable for different use cases. In this article, we will explore the key differences between SQL and NoSQL databases, their pros and cons, and guidance on when to use each type."
+      },
+      {
+        "type": "heading",
+        "text": "Understanding SQL Databases"
+      },
+      {
+        "type": "paragraph",
+        "text": "SQL databases use a structured schema with tables, rows, and columns to organize data. They enforce relationships between data through foreign keys and ensure data integrity through ACID (Atomicity, Consistency, Isolation, Durability) properties. Popular SQL databases include MySQL, PostgreSQL, Oracle, and SQL Server."
+      },
+      {
+        "type": "heading",
+        "text": "Understanding NoSQL Databases"
+      },
+      {
+        "type": "paragraph",
+        "text": "NoSQL databases provide a more flexible approach to data storage. They don't require a fixed schema and can store unstructured or semi-structured data. NoSQL databases can be categorized into four main types: document stores (MongoDB, Firestore), key-value stores (Redis, DynamoDB), column-family stores (Cassandra, HBase), and graph databases (Neo4j, Amazon Neptune)."
+      },
+      {
+        "type": "heading",
+        "text": "Key Differences"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. Schema: SQL databases require a predefined schema, while NoSQL databases are schema-flexible, allowing for easier changes to data structure.\n\n2. Relationships: SQL databases excel at handling complex relationships between data, while NoSQL databases typically don't enforce relationships in the same way.\n\n3. Scaling: SQL databases typically scale vertically (more powerful hardware), while NoSQL databases are designed to scale horizontally (adding more servers).\n\n4. Query Language: SQL databases use SQL (Structured Query Language), which is standardized across different database systems. NoSQL databases might have their own query languages or APIs."
+      },
+      {
+        "type": "heading",
+        "text": "When to Choose SQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose SQL databases when:\n- Your data has a clear, well-defined structure that doesn't change often\n- You need complex queries, joins, and transactions\n- Data integrity is crucial (e.g., financial applications)\n- You have many-to-many relationships within your data\n- You're building applications where data consistency is more important than availability or partition tolerance"
+      },
+      {
+        "type": "heading",
+        "text": "When to Choose NoSQL"
+      },
+      {
+        "type": "paragraph",
+        "text": "Choose NoSQL databases when:\n- You have large volumes of data with no clear structure\n- Your application requires high throughput and low latency\n- You need horizontal scalability for distributed systems\n- Your data model may evolve over time\n- You're working with real-time big data applications\n- You need high availability and can tolerate eventual consistency"
+      },
+      {
+        "type": "paragraph",
+        "text": "In many modern applications, teams are adopting a polyglot persistence approach—using multiple database types within the same application to leverage the strengths of each for different data storage needs. The key is understanding your specific requirements and choosing the right tool for the job."
+      }
+    ]
+  }
+]

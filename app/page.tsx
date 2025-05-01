@@ -8,7 +8,7 @@ import Hero from "@/components/Hero";
 import AboutMe from "@/components/AboutMe";
 import Footer from "@/components/Footer";
 import Skills from "@/components/Skills";
-import Clients from "@/components/Clients";
+import Blog from "@/components/Blog";
 import Approach from "@/components/Approach";
 import Experience from "@/components/Experience";
 import RecentProjects from "@/components/RecentProjects";
@@ -23,7 +23,7 @@ const Home = () => {
         <AboutMe />
         <RecentProjects />
         <Skills />
-        <Clients />
+        <Blog />
         <Experience />
         <Approach />
         <Footer />

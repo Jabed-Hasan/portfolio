@@ -187,6 +187,81 @@ export const testimonials = [
   },
 ];
 
+export const blogPosts = [
+  {
+    slug: "mastering-react-performance",
+    quote:
+      "Learn how to identify and fix performance bottlenecks in your React applications using profiling tools, memoization, and code-splitting techniques for optimal user experience.",
+    name: "Mastering React Performance Optimization",
+    title: "June 15, 2023",
+    image: "/images/react-performance.webp",
+    tag: "React",
+    author: "Md Jabed Hasan",
+    authorRole: "MERN stack developer",
+    authorImage: "/profile.svg",
+  },
+  {
+    slug: "building-accessible-web-applications",
+    quote:
+      "A comprehensive guide to creating inclusive web experiences that work for everyone, covering ARIA attributes, keyboard navigation, and screen reader compatibility.",
+    name: "Building Accessible Web Applications",
+    title: "May 22, 2023",
+    image: "/images/accessibility-web-application.webp",
+    tag: "Accessibility",
+    author: "Md Jabed Hasan",
+    authorRole: "MERN stack developer",
+    authorImage: "/profile.svg",
+  },
+  {
+    slug: "future-of-frontend-development",
+    quote:
+      "Exploring emerging trends like AI-assisted coding, Web Components, and micro-frontends that are shaping the future of web development and what skills to learn.",
+    name: "The Future of Frontend Development",
+    title: "April 10, 2023",
+    image: "/images/Future-of-Frontend-Development.webp",
+    tag: "Frontend",
+    author: "Md Jabed Hasan",
+    authorRole: "MERN stack developer",
+    authorImage: "/profile.svg",
+  },
+  {
+    slug: "css-to-tailwind-journey",
+    quote:
+      "How I transitioned from writing custom CSS to embracing utility-first frameworks and the significant productivity benefits I've experienced in my development workflow.",
+    name: "From CSS to Tailwind: My Journey",
+    title: "March 5, 2023",
+    image: "/images/From-CSS-to-Tailwind-My-Journey.webp",
+    tag: "CSS",
+    author: "Md Jabed Hasan",
+    authorRole: "MERN stack developer",
+    authorImage: "/profile.svg",
+  },
+  {
+    slug: "building-nextjs-fullstack-app",
+    quote:
+      "A step-by-step tutorial on creating a modern web application with server components, data fetching, and authentication using the latest Next.js features.",
+    name: "Building a Full-Stack App with Next.js 14",
+    title: "February 18, 2023",
+    image: "/images/Building-a-Full-Stack-App-with-Next.js-14.jpg",
+    tag: "Next.js",
+    author: "Md Jabed Hasan",
+    authorRole: "MERN stack developer",
+    authorImage: "/profile.svg",
+  },
+  {
+    slug: "sql-vs-nosql-database-choice",
+    quote:
+      "An exploration of SQL vs NoSQL databases, their key differences, and how to choose the right one for your specific application needs and use cases.",
+    name: "SQL vs NoSQL: Choosing the Right Database",
+    title: "January 30, 2023",
+    image: "/images/sql-vs-nosql.jpg",
+    tag: "Databases",
+    author: "Md Jabed Hasan",
+    authorRole: "MERN stack developer",
+    authorImage: "/profile.svg",
+  },
+];
+
 export const companies = [
   {
     id: 1,

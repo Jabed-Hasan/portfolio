@@ -48,7 +48,7 @@ const AboutMe = () => {
           <div className="lg:col-span-2 border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col">
             <div className="flex flex-col sm:flex-row sm:items-center mb-4">
               <div className="w-16 h-16 mb-3 sm:mb-0 sm:mr-4 bg-indigo-600 rounded-full flex items-center justify-center text-xl font-bold">
-                JN
+                JH
               </div>
               <div>
                 <h3 className="text-xl font-bold">Md Jabed Hasan</h3>
