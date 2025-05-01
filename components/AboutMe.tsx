@@ -43,9 +43,9 @@ const AboutMe = () => {
           ABOUT ME
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Left profile section - fully transparent */}
-          <div className="lg:col-span-2 border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col">
+          <div className="border border-zinc-800 rounded-lg p-4 sm:p-6 flex flex-col h-[400px]">
             <div className="flex flex-col sm:flex-row sm:items-center mb-4">
               <div className="w-16 h-16 mb-3 sm:mb-0 sm:mr-4 bg-indigo-600 rounded-full flex items-center justify-center text-xl font-bold">
                 JH
@@ -112,57 +112,47 @@ const AboutMe = () => {
           </div>
 
           {/* Right skills grid - fully transparent */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">📦</div>
-                <h3 className="text-lg sm:text-xl font-bold">
-                  Full-Stack Expertise
-                </h3>
+          <div className="h-[400px] flex flex-col">
+            <div className="flex flex-col gap-6 h-full">
+              <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🔤</div>
+                  <h3 className="text-lg sm:text-xl font-bold">
+                    English Proficiency
+                  </h3>
+                </div>
+                <p className="text-gray-300 text-sm sm:text-base">
+                  I have strong English communication skills, both written and
+                  verbal.
+                </p>
               </div>
-              <p className="text-gray-300 text-sm sm:text-base">
-                Proficient in building end-to-end applications TypeScript,
-                MongoDB, Express.JS, React.
-              </p>
-            </div>
 
-            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🔤</div>
-                <h3 className="text-lg sm:text-xl font-bold">
-                  English Proficiency
-                </h3>
+              <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🔄</div>
+                  <h3 className="text-lg sm:text-xl font-bold">
+                    Continuous Learner
+                  </h3>
+                </div>
+                <p className="text-gray-300 text-sm sm:text-base">
+                  Moving forward, I aim to master modern technologies like
+                  PostgreSQL, Prisma, GraphQL, and Docker
+                </p>
               </div>
-              <p className="text-gray-300 text-sm sm:text-base">
-                I have strong English communication skills, both written and
-                verbal.
-              </p>
-            </div>
 
-            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">💻</div>
-                <h3 className="text-lg sm:text-xl font-bold">
-                  Modern Front-End Skills
-                </h3>
+              <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🧩</div>
+                  <h3 className="text-lg sm:text-xl font-bold">
+                    Problem Solver
+                  </h3>
+                </div>
+                <p className="text-gray-300 text-sm sm:text-base">
+                  I enjoy tackling complex challenges and developing effective
+                  solutions that address real-world problems with creativity and
+                  precision.
+                </p>
               </div>
-              <p className="text-gray-300 text-sm sm:text-base">
-                Focused on modern front-end development with React, Tailwind
-                CSS, Redux and Next.js.
-              </p>
-            </div>
-
-            <div className="border border-zinc-800 rounded-lg p-4 sm:p-6">
-              <div className="flex items-center mb-3 sm:mb-4">
-                <div className="text-2xl sm:text-3xl mr-3 sm:mr-4">🔄</div>
-                <h3 className="text-lg sm:text-xl font-bold">
-                  Continuous Learner
-                </h3>
-              </div>
-              <p className="text-gray-300 text-sm sm:text-base">
-                Moving forward, I aim to master modern technologies like
-                PostgreSQL, Prisma, GraphQL, and Docker
-              </p>
             </div>
           </div>
         </div>
