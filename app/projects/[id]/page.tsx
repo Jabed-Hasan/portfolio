@@ -28,6 +28,7 @@ const ProjectDetailsPage = () => {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [iconErrors, setIconErrors] = useState<Record<string, boolean>>({});
+  const [projectImageError, setProjectImageError] = useState(false);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -108,11 +109,11 @@ const ProjectDetailsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black-100 py-20 px-4 sm:px-10">
+    <div className="min-h-screen bg-black-100 py-12 px-0 sm:px-4 sm:py-20">
       <div className="max-w-7xl mx-auto">
         <Link
           href="/#projects"
-          className="inline-flex items-center text-purple mb-8 hover:underline"
+          className="inline-flex items-center text-purple mb-4 sm:mb-8 hover:underline mx-4 sm:mx-0"
         >
           <span className="transform rotate-180 mr-2">
             <FaLocationArrow />
@@ -120,8 +121,8 @@ const ProjectDetailsPage = () => {
           Back to Projects
         </Link>
 
-        <div className="bg-[#13162D] rounded-3xl p-6 sm:p-10">
-          <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[50vh] mb-10 rounded-2xl overflow-hidden flex items-center justify-center">
+        <div className="bg-[#13162D] sm:rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10">
+          <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[50vh] mb-6 sm:mb-10 rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center">
             <Image
               src="/bg.png"
               alt="background"
@@ -129,32 +130,51 @@ const ProjectDetailsPage = () => {
               fill
               priority
             />
-            <Image
-              src={project.img}
-              alt={project.title}
-              className="z-10 relative max-h-[80%] max-w-full px-4"
-              width={500}
-              height={300}
-              priority
-              onError={() => console.warn("Failed to load project image")}
-              unoptimized={!project.img.startsWith("/")}
-            />
+            {!projectImageError ? (
+              <Image
+                src={`/projects/${project.id}.jpg`}
+                alt={project.title}
+                className="z-10 relative max-h-[80%] max-w-full px-4"
+                width={600}
+                height={400}
+                priority
+                onError={() => {
+                  setProjectImageError(true);
+                }}
+              />
+            ) : (
+              <Image
+                src={project.img}
+                alt={project.title}
+                className="z-10 relative max-h-[80%] max-w-full px-4"
+                width={500}
+                height={300}
+                priority
+                onError={() => console.warn("Failed to load project image")}
+                unoptimized={!project.img.startsWith("/")}
+              />
+            )}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             {project.title}
           </h1>
 
-          <p className="text-xl text-gray-300 mb-10">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-10">
             {project.fullDescription || project.des}
           </p>
 
           {project.features && (
-            <div className="mb-10">
-              <h2 className="text-2xl font-bold mb-4">Key Features</h2>
-              <ul className="list-disc pl-6 space-y-2">
+            <div className="mb-6 sm:mb-10">
+              <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
+                Key Features
+              </h2>
+              <ul className="list-disc pl-5 sm:pl-6 space-y-1 sm:space-y-2">
                 {project.features.map((feature: string, index: number) => (
-                  <li key={index} className="text-gray-300">
+                  <li
+                    key={index}
+                    className="text-gray-300 text-sm sm:text-base"
+                  >
                     {feature}
                   </li>
                 ))}
@@ -163,19 +183,21 @@ const ProjectDetailsPage = () => {
           )}
 
           {project.challenges && (
-            <div className="mb-10">
-              <h2 className="text-2xl font-bold mb-4">
+            <div className="mb-6 sm:mb-10">
+              <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
                 Challenges & Solutions
               </h2>
-              <p className="text-gray-300">{project.challenges}</p>
+              <p className="text-gray-300 text-sm sm:text-base">
+                {project.challenges}
+              </p>
             </div>
           )}
 
-          <div className="flex flex-wrap items-center mb-10">
-            <h2 className="text-2xl font-bold mb-4 w-full">
+          <div className="flex flex-wrap items-center mb-6 sm:mb-10">
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 w-full">
               Technologies Used
             </h2>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-3">
               {project.iconLists.map((icon: string, index: number) => (
                 <div
                   key={index}
@@ -201,7 +223,7 @@ const ProjectDetailsPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4">
             <a
               href={project.link}
               target="_blank"
