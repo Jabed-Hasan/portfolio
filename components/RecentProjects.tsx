@@ -27,25 +27,11 @@ const RecentProjects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // Try API endpoint first
+        // Fetch projects from API endpoint
         const response = await fetch("/api/projects");
 
         if (!response.ok) {
-          // Fall back to direct JSON access if API fails
-          const fallbackResponse = await fetch("/data/projects.json", {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          });
-
-          if (!fallbackResponse.ok) {
-            throw new Error("Failed to fetch projects");
-          }
-
-          const fallbackData = await fallbackResponse.json();
-          setProjects(fallbackData);
-          return;
+          throw new Error("Failed to fetch projects");
         }
 
         const data = await response.json();
@@ -64,8 +50,8 @@ const RecentProjects = () => {
     return <div className="py-20 text-center">Loading projects...</div>;
   }
 
-  // Limit to only the first 3 projects
-  const displayProjects = projects.slice(0, 3);
+  // Limit to only the first 4 projects
+  const displayProjects = projects.slice(0, 4);
 
   return (
     <div
@@ -79,7 +65,7 @@ const RecentProjects = () => {
         </h1>
       </div>
 
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-0 sm:gap-4 md:gap-6 px-0 sm:px-4 md:px-6 lg:px-8 mb-12 sm:mb-16">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-4 md:gap-6 px-0 sm:px-4 md:px-6 lg:px-8 mb-12 sm:mb-16">
         {displayProjects.map((item) => (
           <div
             className="w-full border-b border-gray-800 md:border-0 pb-8 mb-8 md:pb-0 md:mb-0"
@@ -104,17 +90,17 @@ const RecentProjects = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 w-full h-full">
                       <Image
-                        src={`/projects/${item.id}.jpg`}
+                        src={item.img}
                         alt={item.title}
                         fill
-                        className="z-10 object-contain p-1"
+                        className="z-10 object-contain p-0 m-0 image-float"
                         priority
                         onError={(e) => {
-                          // Fallback to original image if project-specific image fails to load
+                          // Fallback to a default image if project image fails to load
                           const target = e.target as HTMLImageElement;
-                          target.src = item.img;
+                          target.src = "/fallback-image.png";
                         }}
                       />
                     </div>

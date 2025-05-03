@@ -32,15 +32,17 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const slug = params.slug as string;
-    const post = blogContentData.find((post) => post.slug === slug);
+    if (params && params.slug) {
+      const slug = params.slug as string;
+      const post = blogContentData.find((post) => post.slug === slug);
 
-    if (post) {
-      setBlogPost(post as BlogPost);
+      if (post) {
+        setBlogPost(post as BlogPost);
+      }
     }
 
     setLoading(false);
-  }, [params.slug]);
+  }, [params]);
 
   if (loading) {
     return (

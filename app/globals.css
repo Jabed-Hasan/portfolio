@@ -38,6 +38,9 @@ html {
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Adjust based on your navbar height */
   }
 
   .dark {
@@ -94,5 +97,320 @@ html {
 
   .full-width-section {
     @apply w-full px-4 sm:px-6 py-20;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .image-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes scrollReveal {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .scroll-reveal {
+    animation: scrollReveal 0.8s ease-out forwards;
+  }
+
+  .project-image-container {
+    transition: all 0.8s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-image-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .project-image-container::after {
+    content: "Click to enlarge";
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  .project-image-container:hover::after {
+    opacity: 1;
+  }
+
+  .project-image-scrollable {
+    transition: transform 20s ease-in-out;
+    cursor: grab;
+  }
+
+  .project-image-scrollable:hover {
+    transform: translateY(calc(-100% + 100vh));
+  }
+
+  .fullscreen-backdrop {
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
+
+  .fullscreen-image-wrapper {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .fullscreen-image-wrapper.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .image-controls {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-controls:hover {
+    opacity: 1;
+  }
+
+  .control-button {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .control-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+  }
+
+  .zoom-control {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 50;
+  }
+
+  .project-card-hover {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .project-card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Image scroll animations */
+  @keyframes scrollDown {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(calc(-100% + 100vh));
+    }
+  }
+
+  .auto-scroll {
+    animation: scrollDown 30s linear forwards;
+  }
+
+  .auto-scroll-loop {
+    animation: scrollDown 30s linear infinite alternate;
+    animation-delay: 1s;
+  }
+
+  /* Continuous vertical scrolling animation with smooth reset loop */
+  @keyframes continuousScroll {
+    /* Scroll down phase */
+    0%, 2% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    45% {
+      transform: translateY(calc(-100% + 100px));
+      opacity: 1;
+    }
+    /* Brief pause at bottom */
+    47% {
+      transform: translateY(calc(-100% + 100px));
+      opacity: 1;
+    }
+    /* Fade out */
+    48% {
+      transform: translateY(calc(-100% + 100px));
+      opacity: 0;
+    }
+    /* Reset position while invisible */
+    49% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    /* Fade back in at top */
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    /* Stay at top briefly before starting again */
+    52%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Base scrolling animation */
+  .continuous-scroll {
+    animation: continuousScroll 15s ease-in-out infinite; 
+    animation-delay: 1s;
+    will-change: transform, opacity;
+  }
+  
+  /* Faster speed option */
+  .scroll-fast {
+    animation-duration: 10s;
+  }
+  
+  /* Ultra-fast speed option */
+  .scroll-ultrafast {
+    animation-duration: 7s;
+  }
+
+  /* Special browser setting to ensure full page visibility */
+  .full-page-browser .desktop-screen {
+    overflow: visible;
+  }
+
+  /* Desktop mockup styles */
+  .desktop-mockup {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    background: #2d2c4a;
+    border-radius: 10px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    padding: 24px 0 0 0;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .desktop-mockup:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Browser-like top bar */
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 16px 12px;
+    background: #2d2c4a;
+  }
+
+  .browser-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 16px;
+  }
+
+  .browser-button {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+
+  .browser-button-red {
+    background: #ff5f56;
+  }
+
+  .browser-button-yellow {
+    background: #ffbd2e;
+  }
+
+  .browser-button-green {
+    background: #27c93f;
+  }
+
+  .browser-address {
+    flex: 1;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .desktop-screen {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    height: 36vh; /* Show about 1/3 of the content initially */
+    min-height: 300px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    z-index: 20;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .scroll-indicator:hover {
+    opacity: 1;
   }
 }
