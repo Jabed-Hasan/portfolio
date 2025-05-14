@@ -233,7 +233,7 @@ const ProjectDetailsPage = () => {
   if (loading) {
     return (
       <div
-        className="min-h-screen w-full py-16 sm:py-20 md:py-28"
+        className="min-h-screen w-full py-24 sm:py-28 md:py-32"
         style={{ backgroundColor: "#13162D" }}
       >
         <div
@@ -259,7 +259,7 @@ const ProjectDetailsPage = () => {
   if (!project) {
     return (
       <div
-        className="min-h-screen w-full py-16 sm:py-20 md:py-28"
+        className="min-h-screen w-full py-24 sm:py-28 md:py-32"
         style={{ backgroundColor: "#13162D" }}
       >
         <div
@@ -282,7 +282,7 @@ const ProjectDetailsPage = () => {
 
   return (
     <div
-      className="min-h-screen w-full py-16 sm:py-20 md:py-28"
+      className="min-h-screen w-full py-24 sm:py-28 md:py-32"
       style={{ backgroundColor: "#13162D" }}
     >
       <div
@@ -298,6 +298,28 @@ const ProjectDetailsPage = () => {
       </div>
       <div className="relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Enhanced Back to Projects Button */}
+          <div className="mb-8">
+            <Link
+              href="/#projects"
+              className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white transition-colors shadow-md hover:shadow-lg border border-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Back to All Projects
+            </Link>
+          </div>
+
           {/* Project Header */}
           <div className="mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -306,34 +328,6 @@ const ProjectDetailsPage = () => {
             <p className="text-lg sm:text-xl text-gray-300 mb-6">
               {project.des}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href={project.link}
-                target="_blank"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-purple hover:bg-purple/90 transition-colors"
-              >
-                <span className="mr-2">Live Demo</span>
-                <FaLocationArrow size={14} />
-              </Link>
-              <Link
-                href={project.github}
-                target="_blank"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
-              >
-                <FaGithub className="mr-2" size={18} />
-                <span>Frontend Code</span>
-              </Link>
-              {project.githubBackend && (
-                <Link
-                  href={project.githubBackend}
-                  target="_blank"
-                  className="inline-flex items-center px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
-                >
-                  <FaGithub className="mr-2" size={18} />
-                  <span>Backend Code</span>
-                </Link>
-              )}
-            </div>
           </div>
 
           {/* Project Image */}
@@ -346,46 +340,52 @@ const ProjectDetailsPage = () => {
                 ></div>
                 <div
                   ref={imageRef}
-                  className={`fixed inset-5 z-50 bg-transparent flex items-center justify-center fullscreen-image-wrapper ${
+                  className={`fixed inset-2 sm:inset-5 z-50 bg-transparent flex items-center justify-center fullscreen-image-wrapper ${
                     isFullscreenActive ? "active" : ""
                   }`}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="absolute top-4 right-4 z-20 flex gap-2 image-controls">
+                  <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20 flex gap-2 image-controls">
                     <button
                       onClick={toggleFullscreen}
-                      className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                      className="bg-black/70 text-white p-2 sm:p-3 rounded-full hover:bg-black/90 transition-all control-button"
                       aria-label="Exit fullscreen"
                     >
-                      <FaCompress />
+                      <FaCompress size={14} className="sm:hidden" />
+                      <FaCompress size={16} className="hidden sm:block" />
                     </button>
                   </div>
 
                   {isScrolling && (
                     <>
-                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3 image-controls">
+                      <div className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-2 sm:gap-3 image-controls">
                         <button
                           onClick={() => handleManualScroll("up")}
-                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          className="bg-black/70 text-white p-2 sm:p-3 rounded-full hover:bg-black/90 transition-all control-button"
                           aria-label="Scroll up"
                           disabled={isAutoScrolling}
                         >
-                          <FaChevronUp />
+                          <FaChevronUp size={14} className="sm:hidden" />
+                          <FaChevronUp size={16} className="hidden sm:block" />
                         </button>
                         <button
                           onClick={() => handleManualScroll("down")}
-                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          className="bg-black/70 text-white p-2 sm:p-3 rounded-full hover:bg-black/90 transition-all control-button"
                           aria-label="Scroll down"
                           disabled={isAutoScrolling}
                         >
-                          <FaChevronDown />
+                          <FaChevronDown size={14} className="sm:hidden" />
+                          <FaChevronDown
+                            size={16}
+                            className="hidden sm:block"
+                          />
                         </button>
                       </div>
 
-                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3 image-controls">
+                      <div className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-2 sm:gap-3 image-controls">
                         <button
                           onClick={toggleAutoScroll}
-                          className={`p-3 rounded-full transition-all control-button ${
+                          className={`p-2 sm:p-3 rounded-full transition-all control-button ${
                             isAutoScrolling
                               ? "bg-purple/90 text-white"
                               : "bg-black/70 text-white"
@@ -396,11 +396,21 @@ const ProjectDetailsPage = () => {
                               : "Play auto-scroll"
                           }
                         >
-                          {isAutoScrolling ? <FaPause /> : <FaPlay />}
+                          {isAutoScrolling ? (
+                            <>
+                              <FaPause size={14} className="sm:hidden" />
+                              <FaPause size={16} className="hidden sm:block" />
+                            </>
+                          ) : (
+                            <>
+                              <FaPlay size={14} className="sm:hidden" />
+                              <FaPlay size={16} className="hidden sm:block" />
+                            </>
+                          )}
                         </button>
                         <button
                           onClick={toggleLoopScroll}
-                          className={`p-3 rounded-full transition-all control-button ${
+                          className={`p-2 sm:p-3 rounded-full transition-all control-button ${
                             scrollMode === "loop"
                               ? "bg-purple/90 text-white"
                               : "bg-black/70 text-white"
@@ -408,90 +418,111 @@ const ProjectDetailsPage = () => {
                           aria-label="Toggle loop scrolling"
                         >
                           <FaLocationArrow
-                            className="animate-spin"
+                            size={14}
+                            className="animate-spin sm:hidden"
+                            style={{ animationDuration: "3s" }}
+                          />
+                          <FaLocationArrow
+                            size={16}
+                            className="animate-spin hidden sm:block"
                             style={{ animationDuration: "3s" }}
                           />
                         </button>
                       </div>
 
-                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-3 image-controls">
+                      <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2 sm:gap-3 image-controls">
                         <button
                           onClick={() => changeZoom(-0.25)}
-                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          className="bg-black/70 text-white p-2 sm:p-3 rounded-full hover:bg-black/90 transition-all control-button"
                           aria-label="Zoom out"
                         >
-                          <FaSearchMinus />
+                          <FaSearchMinus size={14} className="sm:hidden" />
+                          <FaSearchMinus
+                            size={16}
+                            className="hidden sm:block"
+                          />
                         </button>
                         <button
                           onClick={() => changeZoom(0.25)}
-                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          className="bg-black/70 text-white p-2 sm:p-3 rounded-full hover:bg-black/90 transition-all control-button"
                           aria-label="Zoom in"
                         >
-                          <FaSearchPlus />
+                          <FaSearchPlus size={14} className="sm:hidden" />
+                          <FaSearchPlus size={16} className="hidden sm:block" />
                         </button>
                       </div>
                     </>
                   )}
 
                   {!isScrolling && (
-                    <div className="absolute left-4 bottom-4 z-20 flex gap-2 image-controls">
+                    <div className="absolute left-2 sm:left-4 bottom-2 sm:bottom-4 z-20 flex gap-2 image-controls">
                       <button
                         onClick={toggleScrolling}
-                        className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all flex items-center gap-2 control-button"
+                        className="bg-black/70 text-white p-2 sm:p-3 rounded-full hover:bg-black/90 transition-all flex items-center gap-2 control-button"
                         aria-label="Enable scrolling"
                       >
-                        <FaLocationArrow />
-                        <span>Enable image scrolling</span>
+                        <FaLocationArrow size={14} />
+                        <span className="text-sm hidden sm:inline">
+                          Enable image scrolling
+                        </span>
+                        <span className="text-xs sm:hidden">Scroll</span>
                       </button>
                     </div>
                   )}
 
                   <div className="relative w-full h-full max-h-[90vh] overflow-hidden">
-                    <Image
-                      src={project.detailsImage || project.img}
-                      alt={project.title}
-                      className={`w-full h-full object-contain ${
-                        scrollMode === "auto" ? "auto-scroll" : ""
-                      } ${scrollMode === "loop" ? "auto-scroll-loop" : ""} ${
-                        !isScrolling ? "continuous-scroll" : ""
-                      }`}
-                      style={{
-                        transform: isScrolling
-                          ? `translateY(${scrollPosition}px) scale(${zoomLevel})`
-                          : "",
-                        transformOrigin: "center top",
-                        objectFit: "contain",
-                        minHeight: isScrolling ? "600%" : "200%",
-                        transition: "transform 0.1s ease-out",
-                      }}
-                      fill
-                      priority
-                      unoptimized={
-                        !(project.detailsImage || project.img).startsWith("/")
-                      }
-                    />
+                    <div className="w-full h-full flex justify-center items-center">
+                      <div className="w-full h-full relative">
+                        <Image
+                          src={project.detailsImage || project.img}
+                          alt={project.title}
+                          className={`${
+                            scrollMode === "auto" ? "auto-scroll" : ""
+                          } ${
+                            scrollMode === "loop" ? "auto-scroll-loop" : ""
+                          } ${!isScrolling ? "continuous-scroll" : ""}`}
+                          style={{
+                            transform: isScrolling
+                              ? `translateY(${scrollPosition}px) scale(${zoomLevel})`
+                              : "",
+                            transformOrigin: "center top",
+                            minHeight: isScrolling ? "800%" : "300%",
+                            transition: "transform 0.1s ease-out",
+                            objectFit: "contain",
+                          }}
+                          sizes="100vw"
+                          quality={100}
+                          fill
+                          priority
+                          unoptimized={
+                            !(project.detailsImage || project.img).startsWith(
+                              "/"
+                            )
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </>
             )}
 
             {/* Browser bar and desktop screen as a separate section */}
-            <section className="browser-bar-section mb-12">
-              <div className="desktop-mockup reveal-element full-page-browser w-full max-w-[1200px] mx-auto relative overflow-hidden">
+            <section className="browser-bar-section mb-12 w-full overflow-hidden">
+              <div className="desktop-mockup reveal-element full-page-browser w-full max-w-[1200px] mx-auto relative overflow-hidden rounded-lg shadow-2xl">
                 {/* Browser bar - always visible at the top */}
                 <div
-                  className="browser-bar absolute top-0 left-0 w-full z-20"
-                  style={{ height: "60px" }}
+                  className="browser-bar absolute top-0 left-0 w-full z-20 bg-gray-800 flex items-center px-2 sm:px-4 border-b border-gray-700"
+                  style={{ height: "40px" }}
                 >
-                  <div className="browser-buttons">
-                    <div className="browser-button browser-button-red"></div>
-                    <div className="browser-button browser-button-yellow"></div>
-                    <div className="browser-button browser-button-green"></div>
+                  <div className="browser-buttons flex items-center gap-1 sm:gap-2">
+                    <div className="browser-button browser-button-red w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                    <div className="browser-button browser-button-yellow w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                    <div className="browser-button browser-button-green w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
                   </div>
-                  <div className="browser-address">
+                  <div className="browser-address mx-auto bg-gray-700 rounded-md px-2 sm:px-3 py-1 flex items-center text-xs sm:text-sm text-gray-300 max-w-[180px] sm:max-w-[400px] truncate">
                     <div className="flex items-center">
-                      <div className="w-4 h-4 bg-purple mr-2 rounded-sm flex-shrink-0"></div>
-                      <span>
+                      <span className="truncate">
                         https://www.
                         {project.title.toLowerCase().replace(/\s+/g, "-")}.com
                       </span>
@@ -500,60 +531,85 @@ const ProjectDetailsPage = () => {
                   {/* Expand button */}
                   <button
                     onClick={toggleFullscreen}
-                    className="bg-black/70 text-white p-2 rounded-full hover:bg-black/90 transition-all control-button ml-2"
+                    className="text-white p-1 sm:p-2 rounded-full hover:bg-purple/80 transition-all control-button"
                     aria-label="View fullscreen"
                   >
-                    <FaExpand />
+                    <FaExpand size={12} className="sm:hidden" />
+                    <FaExpand size={14} className="hidden sm:block" />
                   </button>
                 </div>
 
                 {/* Desktop screen - scrolling area below the bar */}
                 <div
-                  className="desktop-screen h-[50vh] relative"
-                  style={{ backgroundColor: "#13162D", paddingTop: "60px" }}
+                  className="desktop-screen h-[300px] sm:h-[400px] md:h-[450px] relative w-full"
+                  style={{ backgroundColor: "#fff", paddingTop: "0" }}
                 >
-                  <div className="w-full h-full relative">
-                    <div
-                      className="absolute inset-0 w-full h-full"
-                      style={{ backgroundColor: "#13162D" }}
-                    >
-                      <Image
-                        src="/bg.png"
-                        alt="background"
-                        fill
-                        className="object-cover opacity-50"
-                      />
-                    </div>
+                  <div className="w-full h-full relative overflow-hidden">
                     <div className="relative z-10 w-full h-full">
-                      <Image
-                        src={project.detailsImage || project.img}
-                        alt={project.title}
-                        className="w-full continuous-scroll scroll-ultrafast"
-                        style={{
-                          objectFit: "contain",
-                          objectPosition: "top",
-                          minHeight: "600%",
-                          transformOrigin: "top center",
-                          maxWidth: "100%",
-                          margin: "0 auto",
-                          padding: "1rem",
-                        }}
-                        fill
-                        priority
-                        unoptimized={
-                          !(project.detailsImage || project.img).startsWith("/")
-                        }
-                        onError={() => setProjectImageError(true)}
-                      />
+                      <div className="w-full h-full flex items-center justify-center">
+                        <div className="w-full h-full relative">
+                          <Image
+                            src={project.detailsImage || project.img}
+                            alt={project.title}
+                            className="continuous-scroll"
+                            style={{
+                              objectFit: "contain",
+                              objectPosition: "top",
+                              minHeight: "800%",
+                              transformOrigin: "top center",
+                            }}
+                            sizes="100vw"
+                            quality={100}
+                            fill
+                            priority
+                            unoptimized={
+                              !(project.detailsImage || project.img).startsWith(
+                                "/"
+                              )
+                            }
+                            onError={() => setProjectImageError(true)}
+                          />
+                        </div>
+                      </div>
                     </div>
                     {/* Updated scroll indicator */}
-                    <div className="scroll-indicator">
+                    <div className="scroll-indicator absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium z-20">
                       Continuous scrolling preview
                     </div>
                   </div>
                 </div>
               </div>
             </section>
+
+            {/* Project Links - Moved below the scrolling section */}
+            <div className="flex flex-wrap gap-4 justify-center mb-8">
+              <Link
+                href={project.link}
+                target="_blank"
+                className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-purple to-blue-600 hover:from-purple/90 hover:to-blue-700 text-white transition-colors shadow-md hover:shadow-lg"
+              >
+                <span className="mr-2">Live Demo</span>
+                <FaLocationArrow size={14} />
+              </Link>
+              <Link
+                href={project.github}
+                target="_blank"
+                className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white transition-colors shadow-md hover:shadow-lg border border-gray-700"
+              >
+                <FaGithub className="mr-2" size={18} />
+                <span>Frontend Code</span>
+              </Link>
+              {project.githubBackend && (
+                <Link
+                  href={project.githubBackend}
+                  target="_blank"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white transition-colors shadow-md hover:shadow-lg border border-gray-700"
+                >
+                  <FaGithub className="mr-2" size={18} />
+                  <span>Backend Code</span>
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Project Details */}

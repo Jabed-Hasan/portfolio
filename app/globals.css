@@ -248,72 +248,77 @@ html {
   }
 
   .auto-scroll {
-    animation: scrollDown 30s linear forwards;
+    animation: scrollDown 50s linear forwards;
   }
 
   .auto-scroll-loop {
-    animation: scrollDown 30s linear infinite alternate;
+    animation: scrollDown 50s linear infinite alternate;
     animation-delay: 1s;
   }
 
   /* Continuous vertical scrolling animation with smooth reset loop */
   @keyframes continuousScroll {
-    /* Scroll down phase */
-    0%, 2% {
+    0% {
       transform: translateY(0);
-      opacity: 1;
     }
-    45% {
-      transform: translateY(calc(-100% + 100px));
-      opacity: 1;
-    }
-    /* Brief pause at bottom */
-    47% {
-      transform: translateY(calc(-100% + 100px));
-      opacity: 1;
-    }
-    /* Fade out */
-    48% {
-      transform: translateY(calc(-100% + 100px));
-      opacity: 0;
-    }
-    /* Reset position while invisible */
-    49% {
-      transform: translateY(0);
-      opacity: 0;
-    }
-    /* Fade back in at top */
-    50% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    /* Stay at top briefly before starting again */
-    52%, 100% {
-      transform: translateY(0);
-      opacity: 1;
+    100% {
+      transform: translateY(calc(-100% + 250px));
     }
   }
 
   /* Base scrolling animation */
   .continuous-scroll {
-    animation: continuousScroll 20s ease-in-out infinite;
-    animation-delay: 1s;
-    will-change: transform, opacity;
+    animation: continuousScroll 45s linear infinite;
+    will-change: transform;
+    transform-origin: top center;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
-  
+
+  @media (max-width: 640px) {
+    .continuous-scroll {
+      animation: continuousScroll 45s linear infinite;
+      min-height: 800% !important;
+      object-position: top !important;
+      width: 100% !important;
+    }
+
+    /* Make sure the image container properly sizes on mobile */
+    .desktop-screen .relative.z-10 {
+      width: 100% !important;
+      height: 100% !important;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
+
+  /* Full browser window effect */
+  .full-page-browser {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .full-page-browser .desktop-screen {
+    overflow: hidden !important;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .full-page-browser .desktop-screen img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
   /* Faster speed option */
   .scroll-fast {
     animation-duration: 10s;
   }
-  
+
   /* Ultra-fast speed option */
   .scroll-ultrafast {
     animation-duration: 15s;
-  }
-
-  /* Special browser setting to ensure full page visibility */
-  .full-page-browser .desktop-screen {
-    overflow: visible;
   }
 
   /* Desktop mockup styles */
@@ -321,47 +326,80 @@ html {
     position: relative;
     width: 100%;
     max-width: 1200px;
-    background: #13162D;
-    border-radius: 12px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    padding: 24px 0 0 0;
     margin: 0 auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 30; /* Ensure it's above the footer if they overlap */
+  }
+
+  @media (max-width: 640px) {
+    .desktop-mockup {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .browser-bar-section {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+    }
   }
 
   .desktop-mockup:hover {
     transform: translateY(-5px);
-    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6),
-      0 0 0 1px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   }
 
   /* Browser bar */
   .browser-bar {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    height: 60px;
-    padding: 0 32px;
-    background: #13162D;
+    justify-content: space-between;
+    height: 40px;
+    padding: 0 16px;
+    background: #1a1a1a;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     position: relative;
     z-index: 20;
-    gap: 18px;
     box-sizing: border-box;
+  }
+
+  @media (max-width: 640px) {
+    .browser-bar {
+      height: 36px;
+      padding: 0 8px;
+    }
   }
 
   .browser-buttons {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-right: 18px;
+    gap: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .browser-buttons {
+      gap: 4px;
+    }
   }
 
   .browser-button {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
+  }
+
+  @media (max-width: 640px) {
+    .browser-button {
+      width: 8px;
+      height: 8px;
+    }
   }
 
   .browser-button-red {
@@ -377,65 +415,137 @@ html {
   }
 
   .browser-address {
-    flex: 1;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    flex: 0 1 auto;
+    min-width: 150px;
+    max-width: 400px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    padding: 0 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
     overflow: hidden;
     white-space: nowrap;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-right: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .browser-address {
+      min-width: 120px;
+      height: 24px;
+      padding: 0 8px;
+      font-size: 11px;
+      margin: 0 4px;
+    }
   }
 
   .desktop-screen {
     position: relative;
     overflow: hidden;
-    background: #13162D;
-    min-height: 400px;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    background: #fff;
+    min-height: 250px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  @media (max-width: 640px) {
+    .desktop-screen {
+      min-height: 250px;
+      width: 100vw;
+      max-width: 100%;
+      left: 0;
+      right: 0;
+    }
+
+    .desktop-screen > div {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .desktop-screen {
+      min-height: 350px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .desktop-screen {
+      min-height: 400px;
+    }
   }
 
   /* Scroll indicator */
   .scroll-indicator {
     position: absolute;
-    bottom: 20px;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(19, 22, 45, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
     z-index: 20;
-    opacity: 0.8;
+    opacity: 0.9;
     transition: opacity 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .scroll-indicator {
+      bottom: 12px;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
   }
 
   .scroll-indicator:hover {
     opacity: 1;
   }
 
+  @keyframes continuousScroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(calc(-100% + 400px));
+    }
+  }
+
+  @media (max-width: 640px) {
+    @keyframes continuousScroll {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(calc(-100% + 150px));
+      }
+    }
+  }
+
   .glow-purple {
-    box-shadow: 0 0 15px 5px rgba(147, 51, 234, 0.5), 0 0 30px 10px rgba(147, 51, 234, 0.3);
+    box-shadow: 0 0 15px 5px rgba(147, 51, 234, 0.5),
+      0 0 30px 10px rgba(147, 51, 234, 0.3);
     animation: pulse 2s infinite ease-in-out;
   }
 
   @keyframes pulse {
     0% {
-      box-shadow: 0 0 15px 5px rgba(147, 51, 234, 0.5), 0 0 30px 10px rgba(147, 51, 234, 0.3);
+      box-shadow: 0 0 15px 5px rgba(147, 51, 234, 0.5),
+        0 0 30px 10px rgba(147, 51, 234, 0.3);
     }
     50% {
-      box-shadow: 0 0 20px 10px rgba(147, 51, 234, 0.7), 0 0 40px 15px rgba(147, 51, 234, 0.4);
+      box-shadow: 0 0 20px 10px rgba(147, 51, 234, 0.7),
+        0 0 40px 15px rgba(147, 51, 234, 0.4);
     }
     100% {
-      box-shadow: 0 0 15px 5px rgba(147, 51, 234, 0.5), 0 0 30px 10px rgba(147, 51, 234, 0.3);
+      box-shadow: 0 0 15px 5px rgba(147, 51, 234, 0.5),
+        0 0 30px 10px rgba(147, 51, 234, 0.3);
     }
   }
 
@@ -450,7 +560,8 @@ html {
   }
 
   @keyframes autoScrollLoop {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0) scale(var(--zoom-level, 1));
     }
     50% {
@@ -459,11 +570,11 @@ html {
   }
 
   .auto-scroll {
-    animation: autoScroll 30s linear forwards;
+    animation: autoScroll 50s linear forwards;
   }
 
   .auto-scroll-loop {
-    animation: autoScrollLoop 30s linear infinite;
+    animation: autoScrollLoop 50s linear infinite;
   }
 
   /* Sticky Navbar */
@@ -478,8 +589,16 @@ html {
     max-height: 95vh;
     width: 100%;
     margin: 0 auto;
-    background: #13162D;
+    background: #13162d;
     border-radius: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .fullscreen-image-wrapper {
+      max-width: 98vw;
+      max-height: 98vh;
+      border-radius: 8px;
+    }
   }
 
   .fullscreen-image-wrapper img {
@@ -487,6 +606,20 @@ html {
     height: auto;
     margin: 0 auto;
     padding: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .fullscreen-image-wrapper img {
+      padding: 0.5rem;
+    }
+
+    .control-button {
+      padding: 0.5rem !important;
+    }
+
+    .image-controls {
+      opacity: 0.6;
+    }
   }
 
   /* Animation for slow spinning circle */

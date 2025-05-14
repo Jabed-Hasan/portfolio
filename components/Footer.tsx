@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FaLocationArrow,
   FaPhone,
@@ -55,7 +57,7 @@ const Footer = () => {
               </p>
 
               <div className="flex gap-5 flex-wrap justify-center">
-                <a href="mailto:jabed8441@GMAIL.COM">
+                <a href="mailto:jabed8441@gmail.com">
                   <MagicButton
                     title="Send an Email"
                     icon={<FaEnvelope />}
@@ -218,10 +220,10 @@ const Footer = () => {
                 <div>
                   <p className="text-white font-medium text-sm">Email</p>
                   <a
-                    href="mailto:jabed8441@GMAIL.COM"
+                    href="mailto:jabed8441@gmail.com"
                     className="text-white-200 text-sm hover:text-purple transition-colors"
                   >
-                    jabed8441@GMAIL.COM
+                    jabed8441@gmail.com
                   </a>
                 </div>
               </li>

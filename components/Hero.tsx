@@ -174,21 +174,21 @@ const Hero = () => {
           >
             {/* Purple glowing effect */}
             <div className="absolute inset-0 rounded-full bg-purple-600/40 blur-xl animate-pulse scale-110"></div>
-            
+
             {/* Purple animated border/outline effect */}
-            <motion.div 
+            <motion.div
               className="absolute inset-0 rounded-full border-2 border-purple-500 scale-110"
               animate={{
                 boxShadow: [
                   "0 0 25px 5px rgba(168, 85, 247, 0.4)",
                   "0 0 40px 10px rgba(168, 85, 247, 0.6)",
-                  "0 0 25px 5px rgba(168, 85, 247, 0.4)"
-                ]
+                  "0 0 25px 5px rgba(168, 85, 247, 0.4)",
+                ],
               }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             ></motion.div>
 
@@ -215,7 +215,7 @@ const Hero = () => {
                 strokeDasharray="1,3"
                 className="animate-spin-slow"
               />
-              
+
               {/* Subtle inner ring */}
               <circle
                 cx="100"
@@ -225,24 +225,39 @@ const Hero = () => {
                 stroke="rgba(168, 85, 247, 0.15)"
                 strokeWidth="0.3"
                 className="animate-spin-slow"
-                style={{ animationDirection: 'reverse', animationDuration: '30s' }}
+                style={{
+                  animationDirection: "reverse",
+                  animationDuration: "30s",
+                }}
               />
-              
+
               {/* Define gradient */}
               <defs>
-                <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="purpleGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="rgba(139, 92, 246, 0.3)" />
                   <stop offset="50%" stopColor="rgba(168, 85, 247, 0.5)" />
                   <stop offset="100%" stopColor="rgba(139, 92, 246, 0.3)" />
                 </linearGradient>
-                
-                <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+
+                <linearGradient
+                  id="glowGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="rgba(139, 92, 246, 0)" />
                   <stop offset="50%" stopColor="rgba(168, 85, 247, 0.3)" />
                   <stop offset="100%" stopColor="rgba(139, 92, 246, 0)" />
                 </linearGradient>
               </defs>
-              
+
               {/* Abstract curved path */}
               <path
                 d="M60,100 C60,60 140,60 140,100 C140,140 60,140 60,100 Z"
@@ -250,9 +265,9 @@ const Hero = () => {
                 stroke="rgba(168, 85, 247, 0.2)"
                 strokeWidth="0.5"
                 className="animate-spin-slow"
-                style={{ animationDuration: '35s' }}
+                style={{ animationDuration: "35s" }}
               />
-              
+
               {/* Glow effect */}
               <path
                 d="M40,100 C40,40 160,40 160,100 C160,160 40,160 40,100 Z"
@@ -260,14 +275,14 @@ const Hero = () => {
                 opacity="0.15"
                 className="animate-pulse"
               />
-              
+
               {/* Subtle stars/sparkles */}
               {[...Array(12)].map((_, i) => {
                 const angle = (i / 12) * Math.PI * 2;
                 const radius = 80;
                 const x = 100 + radius * Math.cos(angle);
                 const y = 100 + radius * Math.sin(angle);
-                
+
                 return (
                   <circle
                     key={i}
@@ -276,9 +291,9 @@ const Hero = () => {
                     r="0.7"
                     fill="rgba(255, 255, 255, 0.6)"
                     className="animate-pulse"
-                    style={{ 
+                    style={{
                       animationDelay: `${i * 0.2}s`,
-                      animationDuration: '3s'
+                      animationDuration: "3s",
                     }}
                   />
                 );

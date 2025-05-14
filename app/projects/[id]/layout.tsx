@@ -1,5 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { projects } from "@/data";
+import Footer from "@/components/Footer";
 
 type Props = {
   params: { id: string };
@@ -38,5 +39,10 @@ export async function generateMetadata(
 }
 
 export default function ProjectDetailsLayout({ children }: Props) {
-  return children;
+  return (
+    <main className="relative bg-black-100 flex flex-col w-full overflow-hidden">
+      {children}
+      <Footer />
+    </main>
+  );
 }

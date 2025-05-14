@@ -76,8 +76,8 @@ export const projects = [
   {
     id: 1,
     title: "FeedMe - Personalized Meal Planning & Delivery 🍱",
-    img: "/data/1.jpg",
-    detailsImage: "/data/b2.png",
+    img: "/data/2.png",
+    detailsImage: "/data/2.png",
     iconLists: [
       "/next.svg",
       "/redux.svg",
@@ -121,8 +121,8 @@ export const projects = [
   {
     id: 2,
     title: "Velocity Car Shop",
-    img: "/data/2.jpg",
-    detailsImage: "/data/b3.png",
+    img: "/data/1.png",
+    detailsImage: "/data/1.png",
     iconLists: [
       "/re.svg",
       "/redux.svg",
@@ -143,7 +143,7 @@ export const projects = [
       "TypeScript",
       "Tailwind CSS",
     ],
-    link: "https://velocity-car-shop.vercel.app",
+    link: "https://velocity-car-shop-fontend.vercel.app",
     github: "https://github.com/Jabed-Hasan/velocity-car-shop-fontend.git",
     githubBackend: "https://github.com/Jabed-Hasan/velocity-backend.git",
     fullDescription:
