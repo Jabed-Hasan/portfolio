@@ -48,7 +48,7 @@ const Experience = () => {
                     transition={{ delay: 0.5, duration: 0.5 }}
                   >
                     <div className="inline-block px-3 py-1 text-xs font-medium bg-purple-500/10 text-purple-400 rounded-full mb-3">
-                      May 2024 - Present
+                      Nov 2024 - Present
                     </div>
 
                     <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
