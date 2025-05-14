@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 const Skills = () => {
   // Define all skills in a single array
   const allSkills = [
     { name: "MongoDB", icon: "mongodb", color: "#47A248" },
+    { name: "Mongoose", icon: "mongoose", color: "#880000" },
     { name: "Firebase", icon: "firebase", color: "#FFCA28" },
     { name: "Node.js", icon: "nodedotjs", color: "#339933" },
     { name: "Next.js", icon: "nextdotjs", color: "#ffffff" },
@@ -43,6 +44,7 @@ const Skills = () => {
     github: "/git.svg",
     stream: "/stream.svg",
     docker: "/dock.svg",
+    mongoose: "/mongoose.png",
   };
 
   // Track images that fail to load
@@ -53,6 +55,11 @@ const Skills = () => {
 
   // Get logo URL with appropriate icon
   const getLogoUrl = (icon: string, name: string): IconResult => {
+    // Special case for mongoose - always use SVG instead of trying to load an image
+    if (icon === "mongoose") {
+      return renderMongooseIcon();
+    }
+
     // Check if we have a local logo first
     if (localLogos[icon as keyof typeof localLogos] && !failedImages[icon]) {
       return localLogos[icon as keyof typeof localLogos];
@@ -94,6 +101,22 @@ const Skills = () => {
       ...prev,
       [icon]: true,
     }));
+  };
+
+  // Render mongoose icon as SVG
+  const renderMongooseIcon = () => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="100%"
+        height="100%"
+        fill="#880000"
+        style={{ minWidth: "24px", minHeight: "24px" }}
+      >
+        <path d="M13.74 4.23c-.04-.41-.32-1.24-.48-1.58-.18-.38-.28-.47-.28-.47C12.83.95 12.07.07 12.07.07l-.03.03c0 .05-.17 1.46-.17 1.46-.36 1.86-.52 3.7-.51 5.56 0 .41 0 .82.01 1.23 0 .01-.11.76-.11.76-.25.5-.47 1.96-.23 3.48.31 1.95.56 3.28 1.39 4.67.118 0 .14-1.312.14-1.312.57.227.97 2.55 1.08 3.907 0 0 .23.01.38-.12.0893-.5173.3853-1.4987.817-2.16 1.014-1.55 1.624-3.297 1.781-5.127.113-.813.133-1.633.06-2.448-.09-.95-.32-1.784-.74-2.73-.42-.944-1.29-2.64-1.26-3.87z" />
+      </svg>
+    );
   };
 
   // Render custom icons with SVG for interpersonal skills
@@ -281,32 +304,36 @@ const Skills = () => {
     return (
       <div className="flex overflow-hidden mb-6">
         <div
-          className={`flex gap-6 animate-marquee-${direction} whitespace-nowrap`}
+          className={`flex gap-3 sm:gap-6 animate-marquee-${direction} whitespace-nowrap`}
         >
           {/* Double the skills array to create a seamless loop effect */}
           {[...skills, ...skills].map((skill, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-28 md:w-36 flex flex-col items-center justify-center p-4 rounded-xl bg-[rgb(18,18,45)] border border-[rgba(67,67,153,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(125,90,255,0.4)]"
+              className="flex-shrink-0 w-20 sm:w-28 md:w-36 flex flex-col items-center justify-center p-2 sm:p-4 rounded-xl bg-[rgb(18,18,45)] border border-[rgba(67,67,153,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(125,90,255,0.4)]"
             >
-              <div className="h-14 w-14 flex items-center justify-center mb-4">
-                {[
-                  "curiosity",
-                  "listening",
-                  "responsibility",
-                  "flexibility",
-                  "decision",
-                  "devtools",
-                  "vscode",
-                  "surjopay",
-                  "sslcommerz",
-                  "multerjs",
-                  "bcryptjs",
-                  "nodemailerjs",
-                  "corsjs",
-                ].includes(skill.icon) ? (
+              <div className="h-10 w-10 sm:h-14 sm:w-14 flex items-center justify-center mb-2 sm:mb-4">
+                {skill.icon === "mongoose" ? (
+                  <div className="h-8 w-8 sm:h-12 sm:w-12 flex items-center justify-center">
+                    {renderMongooseIcon()}
+                  </div>
+                ) : [
+                    "curiosity",
+                    "listening",
+                    "responsibility",
+                    "flexibility",
+                    "decision",
+                    "devtools",
+                    "vscode",
+                    "surjopay",
+                    "sslcommerz",
+                    "multerjs",
+                    "bcryptjs",
+                    "nodemailerjs",
+                    "corsjs",
+                  ].includes(skill.icon) ? (
                   <div
-                    className="h-12 w-12"
+                    className="h-8 w-8 sm:h-12 sm:w-12"
                     style={{ color: skill.color || "#fff" }}
                   >
                     {renderCustomIcon(skill.icon)}
@@ -315,7 +342,7 @@ const Skills = () => {
                   <Image
                     src={getLogoUrl(skill.icon, skill.name) as string}
                     alt={skill.name}
-                    className="h-12 w-12 object-contain"
+                    className="h-8 w-8 sm:h-12 sm:w-12 object-contain"
                     width={48}
                     height={48}
                     onError={() => handleImageError(skill.icon)}
@@ -323,7 +350,7 @@ const Skills = () => {
                   />
                 )}
               </div>
-              <span className="font-medium text-sm text-center">
+              <span className="font-medium text-xs sm:text-sm text-center truncate w-full">
                 {skill.name}
               </span>
             </div>
@@ -334,7 +361,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 w-full overflow-hidden">
+    <section id="skills" className="py-12 sm:py-20 w-full overflow-hidden">
       <style jsx global>{`
         @keyframes marquee-left {
           from {
@@ -355,16 +382,26 @@ const Skills = () => {
         }
 
         .animate-marquee-left {
-          animation: marquee-left 40s linear infinite;
+          animation: marquee-left 30s linear infinite;
         }
 
         .animate-marquee-right {
-          animation: marquee-right 40s linear infinite;
+          animation: marquee-right 30s linear infinite;
+        }
+
+        @media (max-width: 640px) {
+          .animate-marquee-left {
+            animation: marquee-left 20s linear infinite;
+          }
+
+          .animate-marquee-right {
+            animation: marquee-right 20s linear infinite;
+          }
         }
       `}</style>
 
-      <div className="w-full px-6 sm:px-10">
-        <h1 className="heading mb-12">
+      <div className="w-full px-4 sm:px-6 sm:px-10">
+        <h1 className="heading mb-8 sm:mb-12 text-center">
           My <span className="text-purple">Skill Set</span>
         </h1>
 
