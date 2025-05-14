@@ -19,6 +19,7 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 // Define Project type
 type Project = {
@@ -230,346 +231,389 @@ const ProjectDetailsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple"></div>
+      <div
+        className="min-h-screen w-full py-16 sm:py-20 md:py-28"
+        style={{ backgroundColor: "#13162D" }}
+      >
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{ backgroundColor: "#13162D" }}
+        >
+          <Image
+            src="/bg.png"
+            alt="background"
+            fill
+            className="object-cover opacity-50"
+          />
+        </div>
+        <div className="relative z-10">
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple"></div>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold mb-4">Project not found</h1>
-        <Link href="/" className="text-purple hover:underline">
-          Return to home
-        </Link>
+      <div
+        className="min-h-screen w-full py-16 sm:py-20 md:py-28"
+        style={{ backgroundColor: "#13162D" }}
+      >
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{ backgroundColor: "#13162D" }}
+        >
+          <Image
+            src="/bg.png"
+            alt="background"
+            fill
+            className="object-cover opacity-50"
+          />
+        </div>
+        <div className="relative z-10">
+          <div className="text-center py-20">Project not found</div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black-100 py-12 px-0 sm:px-4 sm:py-20">
-      <div className="max-w-7xl mx-auto">
-        <Link
-          href="/#projects"
-          className="inline-flex items-center text-purple mb-4 sm:mb-8 hover:underline mx-4 sm:mx-0"
-        >
-          <span className="transform rotate-180 mr-2">
-            <FaLocationArrow />
-          </span>
-          Back to Projects
-        </Link>
-
-        <div className="bg-[#13162D] sm:rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 project-card-hover">
-          <div className="w-full relative overflow-hidden flex justify-center py-6">
-            {/* Desktop mockup container */}
-            <div className="desktop-mockup reveal-element full-page-browser">
-              {/* Browser bar */}
-              <div className="browser-bar">
-                <div className="browser-buttons">
-                  <div className="browser-button browser-button-red"></div>
-                  <div className="browser-button browser-button-yellow"></div>
-                  <div className="browser-button browser-button-green"></div>
-                </div>
-                <div className="browser-address">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-purple mr-2 rounded-sm flex-shrink-0"></div>
-                    <span>
-                      https://www.
-                      {project.title.toLowerCase().replace(/\s+/g, "-")}.com
-                    </span>
-                  </div>
-                </div>
-
-                {/* Expand button */}
-                <button
-                  onClick={toggleFullscreen}
-                  className="bg-black/70 text-white p-2 rounded-full hover:bg-black/90 transition-all control-button ml-2"
-                  aria-label="View fullscreen"
+    <div
+      className="min-h-screen w-full py-16 sm:py-20 md:py-28"
+      style={{ backgroundColor: "#13162D" }}
+    >
+      <div
+        className="absolute inset-0 w-full h-full"
+        style={{ backgroundColor: "#13162D" }}
+      >
+        <Image
+          src="/bg.png"
+          alt="background"
+          fill
+          className="object-cover opacity-50"
+        />
+      </div>
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Project Header */}
+          <div className="mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              {project.title}
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-300 mb-6">
+              {project.des}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href={project.link}
+                target="_blank"
+                className="inline-flex items-center px-6 py-3 rounded-lg bg-purple hover:bg-purple/90 transition-colors"
+              >
+                <span className="mr-2">Live Demo</span>
+                <FaLocationArrow size={14} />
+              </Link>
+              <Link
+                href={project.github}
+                target="_blank"
+                className="inline-flex items-center px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <FaGithub className="mr-2" size={18} />
+                <span>Frontend Code</span>
+              </Link>
+              {project.githubBackend && (
+                <Link
+                  href={project.githubBackend}
+                  target="_blank"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
                 >
-                  <FaExpand />
-                </button>
-              </div>
-
-              {/* Desktop screen */}
-              <div className="desktop-screen">
-                {/* Website content that scrolls */}
-                <div className="w-full h-full relative">
-                  <Image
-                    src={project.detailsImage || project.img}
-                    alt={project.title}
-                    className="w-full continuous-scroll scroll-ultrafast"
-                    style={{
-                      objectFit: "contain",
-                      objectPosition: "top",
-                      minHeight: "600%", // Significantly increased to ensure all content is shown
-                      transformOrigin: "top center",
-                    }}
-                    fill
-                    priority
-                    unoptimized={
-                      !(project.detailsImage || project.img).startsWith("/")
-                    }
-                    onError={() => {
-                      setProjectImageError(true);
-                    }}
-                  />
-
-                  {/* Updated scroll indicator */}
-                  <div className="scroll-indicator">
-                    Continuous scrolling preview
-                  </div>
-                </div>
-              </div>
+                  <FaGithub className="mr-2" size={18} />
+                  <span>Backend Code</span>
+                </Link>
+              )}
             </div>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 reveal-element mt-6">
-            {project.title}
-          </h1>
+          {/* Project Image */}
+          <div className="relative mb-12 max-w-[1200px] mx-auto">
+            {isFullscreen && (
+              <>
+                <div
+                  className="fixed inset-0 bg-black/70 z-40 fullscreen-backdrop"
+                  onClick={toggleFullscreen}
+                ></div>
+                <div
+                  ref={imageRef}
+                  className={`fixed inset-5 z-50 bg-transparent flex items-center justify-center fullscreen-image-wrapper ${
+                    isFullscreenActive ? "active" : ""
+                  }`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="absolute top-4 right-4 z-20 flex gap-2 image-controls">
+                    <button
+                      onClick={toggleFullscreen}
+                      className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                      aria-label="Exit fullscreen"
+                    >
+                      <FaCompress />
+                    </button>
+                  </div>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-10 reveal-element">
-            {project.fullDescription || project.des}
-          </p>
+                  {isScrolling && (
+                    <>
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3 image-controls">
+                        <button
+                          onClick={() => handleManualScroll("up")}
+                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          aria-label="Scroll up"
+                          disabled={isAutoScrolling}
+                        >
+                          <FaChevronUp />
+                        </button>
+                        <button
+                          onClick={() => handleManualScroll("down")}
+                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          aria-label="Scroll down"
+                          disabled={isAutoScrolling}
+                        >
+                          <FaChevronDown />
+                        </button>
+                      </div>
 
-          {project.features && (
-            <div className="mb-6 sm:mb-10 reveal-element">
-              <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-                Key Features
-              </h2>
-              <ul className="list-disc pl-5 sm:pl-6 space-y-1 sm:space-y-2">
-                {project.features.map((feature: string, index: number) => (
-                  <li
-                    key={index}
-                    className="text-gray-300 text-sm sm:text-base"
+                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3 image-controls">
+                        <button
+                          onClick={toggleAutoScroll}
+                          className={`p-3 rounded-full transition-all control-button ${
+                            isAutoScrolling
+                              ? "bg-purple/90 text-white"
+                              : "bg-black/70 text-white"
+                          }`}
+                          aria-label={
+                            isAutoScrolling
+                              ? "Pause auto-scroll"
+                              : "Play auto-scroll"
+                          }
+                        >
+                          {isAutoScrolling ? <FaPause /> : <FaPlay />}
+                        </button>
+                        <button
+                          onClick={toggleLoopScroll}
+                          className={`p-3 rounded-full transition-all control-button ${
+                            scrollMode === "loop"
+                              ? "bg-purple/90 text-white"
+                              : "bg-black/70 text-white"
+                          }`}
+                          aria-label="Toggle loop scrolling"
+                        >
+                          <FaLocationArrow
+                            className="animate-spin"
+                            style={{ animationDuration: "3s" }}
+                          />
+                        </button>
+                      </div>
+
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-3 image-controls">
+                        <button
+                          onClick={() => changeZoom(-0.25)}
+                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          aria-label="Zoom out"
+                        >
+                          <FaSearchMinus />
+                        </button>
+                        <button
+                          onClick={() => changeZoom(0.25)}
+                          className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
+                          aria-label="Zoom in"
+                        >
+                          <FaSearchPlus />
+                        </button>
+                      </div>
+                    </>
+                  )}
+
+                  {!isScrolling && (
+                    <div className="absolute left-4 bottom-4 z-20 flex gap-2 image-controls">
+                      <button
+                        onClick={toggleScrolling}
+                        className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all flex items-center gap-2 control-button"
+                        aria-label="Enable scrolling"
+                      >
+                        <FaLocationArrow />
+                        <span>Enable image scrolling</span>
+                      </button>
+                    </div>
+                  )}
+
+                  <div className="relative w-full h-full max-h-[90vh] overflow-hidden">
+                    <Image
+                      src={project.detailsImage || project.img}
+                      alt={project.title}
+                      className={`w-full h-full object-contain ${
+                        scrollMode === "auto" ? "auto-scroll" : ""
+                      } ${scrollMode === "loop" ? "auto-scroll-loop" : ""} ${
+                        !isScrolling ? "continuous-scroll" : ""
+                      }`}
+                      style={{
+                        transform: isScrolling
+                          ? `translateY(${scrollPosition}px) scale(${zoomLevel})`
+                          : "",
+                        transformOrigin: "center top",
+                        objectFit: "contain",
+                        minHeight: isScrolling ? "600%" : "200%",
+                        transition: "transform 0.1s ease-out",
+                      }}
+                      fill
+                      priority
+                      unoptimized={
+                        !(project.detailsImage || project.img).startsWith("/")
+                      }
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Browser bar and desktop screen as a separate section */}
+            <section className="browser-bar-section mb-12">
+              <div className="desktop-mockup reveal-element full-page-browser w-full max-w-[1200px] mx-auto relative overflow-hidden">
+                {/* Browser bar - always visible at the top */}
+                <div
+                  className="browser-bar absolute top-0 left-0 w-full z-20"
+                  style={{ height: "60px" }}
+                >
+                  <div className="browser-buttons">
+                    <div className="browser-button browser-button-red"></div>
+                    <div className="browser-button browser-button-yellow"></div>
+                    <div className="browser-button browser-button-green"></div>
+                  </div>
+                  <div className="browser-address">
+                    <div className="flex items-center">
+                      <div className="w-4 h-4 bg-purple mr-2 rounded-sm flex-shrink-0"></div>
+                      <span>
+                        https://www.
+                        {project.title.toLowerCase().replace(/\s+/g, "-")}.com
+                      </span>
+                    </div>
+                  </div>
+                  {/* Expand button */}
+                  <button
+                    onClick={toggleFullscreen}
+                    className="bg-black/70 text-white p-2 rounded-full hover:bg-black/90 transition-all control-button ml-2"
+                    aria-label="View fullscreen"
                   >
+                    <FaExpand />
+                  </button>
+                </div>
+
+                {/* Desktop screen - scrolling area below the bar */}
+                <div
+                  className="desktop-screen h-[50vh] relative"
+                  style={{ backgroundColor: "#13162D", paddingTop: "60px" }}
+                >
+                  <div className="w-full h-full relative">
+                    <div
+                      className="absolute inset-0 w-full h-full"
+                      style={{ backgroundColor: "#13162D" }}
+                    >
+                      <Image
+                        src="/bg.png"
+                        alt="background"
+                        fill
+                        className="object-cover opacity-50"
+                      />
+                    </div>
+                    <div className="relative z-10 w-full h-full">
+                      <Image
+                        src={project.detailsImage || project.img}
+                        alt={project.title}
+                        className="w-full continuous-scroll scroll-ultrafast"
+                        style={{
+                          objectFit: "contain",
+                          objectPosition: "top",
+                          minHeight: "600%",
+                          transformOrigin: "top center",
+                          maxWidth: "100%",
+                          margin: "0 auto",
+                          padding: "1rem",
+                        }}
+                        fill
+                        priority
+                        unoptimized={
+                          !(project.detailsImage || project.img).startsWith("/")
+                        }
+                        onError={() => setProjectImageError(true)}
+                      />
+                    </div>
+                    {/* Updated scroll indicator */}
+                    <div className="scroll-indicator">
+                      Continuous scrolling preview
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* Project Details */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
+              <p className="text-gray-300 mb-8 leading-relaxed">
+                {project.fullDescription}
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4">Key Features</h2>
+              <ul className="list-disc list-inside space-y-2 text-gray-300 mb-8">
+                {project.features.map((feature, index) => (
+                  <li key={index} className="leading-relaxed">
                     {feature}
                   </li>
                 ))}
               </ul>
             </div>
-          )}
 
-          {project.challenges && (
-            <div className="mb-6 sm:mb-10 reveal-element">
-              <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
-                Challenges & Solutions
-              </h2>
-              <p className="text-gray-300 text-sm sm:text-base">
-                {project.challenges}
-              </p>
-            </div>
-          )}
-
-          <div className="flex flex-wrap items-center mb-6 sm:mb-10 reveal-element">
-            <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 w-full">
-              Technologies Used
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {project.iconLists.map((icon: string, index: number) => (
-                <div
-                  key={index}
-                  className="border border-white/[.2] rounded-full bg-black w-16 h-16 flex justify-center items-center mr-4 mb-4"
-                >
-                  {!iconErrors[`${icon}-${index}`] ? (
+            <div className="lg:col-span-1">
+              <h2 className="text-2xl font-bold mb-4">Technologies Used</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4">
+                {project.iconLists.map((icon, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center p-3 rounded-lg bg-gray-800/50 border border-gray-700"
+                  >
                     <Image
-                      src={icon}
-                      alt={`technology-${index}`}
-                      className="p-1.5"
-                      width={42}
-                      height={42}
+                      src={
+                        iconErrors[`${icon}-${index}`]
+                          ? "/fallback-icon.png"
+                          : icon
+                      }
+                      alt={`Technology ${index + 1}`}
+                      width={24}
+                      height={24}
+                      className="mr-2"
                       onError={() => handleIconError(icon, index)}
-                      unoptimized={!icon.startsWith("/")}
                     />
-                  ) : (
-                    <div className="w-10 h-10 flex items-center justify-center text-white text-sm">
-                      Tech
-                    </div>
-                  )}
-                </div>
-              ))}
+                    <span className="text-sm text-gray-300">
+                      {icon.split("/").pop()?.split(".")[0]}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {project.challenges && (
+                <>
+                  <h2 className="text-2xl font-bold mt-8 mb-4">
+                    Challenges & Solutions
+                  </h2>
+                  <p className="text-gray-300 leading-relaxed">
+                    {project.challenges}
+                  </p>
+                </>
+              )}
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-3 sm:gap-4 reveal-element">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-purple bg-opacity-20 text-purple hover:bg-opacity-30 transition-all px-6 py-3 rounded-lg"
-            >
-              Visit Live Site
-              <FaLocationArrow className="ml-2" />
-            </a>
-
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-gray-800 text-white hover:bg-gray-700 transition-all px-6 py-3 rounded-lg"
-              >
-                Frontend Repo
-                <FaGithub className="ml-2" />
-              </a>
-            )}
-
-            {project.githubBackend && (
-              <a
-                href={project.githubBackend}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-gray-800 text-white hover:bg-gray-700 transition-all px-6 py-3 rounded-lg"
-              >
-                Backend Repo
-                <FaGithub className="ml-2" />
-              </a>
-            )}
-
-            <Link
-              href="/#projects"
-              className="inline-flex items-center border border-gray-600 text-white hover:border-gray-400 transition-all px-6 py-3 rounded-lg"
-            >
-              View Other Projects
-            </Link>
           </div>
         </div>
       </div>
-
-      {isFullscreen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/70 z-40 fullscreen-backdrop"
-            onClick={toggleFullscreen}
-          ></div>
-          <div
-            ref={imageRef}
-            className={`fixed inset-10 z-50 bg-transparent flex items-center justify-center fullscreen-image-wrapper ${
-              isFullscreenActive ? "active" : ""
-            }`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="absolute top-4 right-4 z-20 flex gap-2 image-controls">
-              <button
-                onClick={toggleFullscreen}
-                className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
-                aria-label="Exit fullscreen"
-              >
-                <FaCompress />
-              </button>
-            </div>
-
-            {isScrolling && (
-              <>
-                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3 image-controls">
-                  <button
-                    onClick={() => handleManualScroll("up")}
-                    className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
-                    aria-label="Scroll up"
-                    disabled={isAutoScrolling}
-                  >
-                    <FaChevronUp />
-                  </button>
-                  <button
-                    onClick={() => handleManualScroll("down")}
-                    className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
-                    aria-label="Scroll down"
-                    disabled={isAutoScrolling}
-                  >
-                    <FaChevronDown />
-                  </button>
-                </div>
-
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3 image-controls">
-                  <button
-                    onClick={toggleAutoScroll}
-                    className={`p-3 rounded-full transition-all control-button ${
-                      isAutoScrolling
-                        ? "bg-purple/90 text-white"
-                        : "bg-black/70 text-white"
-                    }`}
-                    aria-label={
-                      isAutoScrolling ? "Pause auto-scroll" : "Play auto-scroll"
-                    }
-                  >
-                    {isAutoScrolling ? <FaPause /> : <FaPlay />}
-                  </button>
-                  <button
-                    onClick={toggleLoopScroll}
-                    className={`p-3 rounded-full transition-all control-button ${
-                      scrollMode === "loop"
-                        ? "bg-purple/90 text-white"
-                        : "bg-black/70 text-white"
-                    }`}
-                    aria-label="Toggle loop scrolling"
-                  >
-                    <FaLocationArrow
-                      className="animate-spin"
-                      style={{ animationDuration: "3s" }}
-                    />
-                  </button>
-                </div>
-
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-3 image-controls">
-                  <button
-                    onClick={() => changeZoom(-0.25)}
-                    className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
-                    aria-label="Zoom out"
-                  >
-                    <FaSearchMinus />
-                  </button>
-                  <button
-                    onClick={() => changeZoom(0.25)}
-                    className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all control-button"
-                    aria-label="Zoom in"
-                  >
-                    <FaSearchPlus />
-                  </button>
-                </div>
-              </>
-            )}
-
-            {!isScrolling && (
-              <div className="absolute left-4 bottom-4 z-20 flex gap-2 image-controls">
-                <button
-                  onClick={toggleScrolling}
-                  className="bg-black/70 text-white p-3 rounded-full hover:bg-black/90 transition-all flex items-center gap-2 control-button"
-                  aria-label="Enable scrolling"
-                >
-                  <FaLocationArrow />
-                  <span>Enable image scrolling</span>
-                </button>
-              </div>
-            )}
-
-            <div className="relative w-full h-full max-h-[90vh] overflow-hidden">
-              <Image
-                src={project.detailsImage || project.img}
-                alt={project.title}
-                className={`w-full h-full object-contain ${
-                  scrollMode === "auto" ? "auto-scroll" : ""
-                } ${scrollMode === "loop" ? "auto-scroll-loop" : ""} ${
-                  !isScrolling ? "continuous-scroll" : ""
-                }`}
-                style={{
-                  transform: isScrolling
-                    ? `translateY(${scrollPosition}px) scale(${zoomLevel})`
-                    : "",
-                  transformOrigin: "center top",
-                  objectFit: "contain",
-                  minHeight: isScrolling ? "600%" : "200%",
-                  transition: "transform 0.1s ease-out",
-                }}
-                fill
-                priority
-                unoptimized={
-                  !(project.detailsImage || project.img).startsWith("/")
-                }
-              />
-            </div>
-          </div>
-        </>
-      )}
     </div>
   );
 };

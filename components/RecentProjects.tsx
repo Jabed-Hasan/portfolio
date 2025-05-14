@@ -65,96 +65,108 @@ const RecentProjects = () => {
         </h1>
       </div>
 
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-4 md:gap-6 px-0 sm:px-4 md:px-6 lg:px-8 mb-12 sm:mb-16">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-2 sm:px-4 md:px-6 lg:px-8 mb-12 sm:mb-16">
         {displayProjects.map((item) => (
           <div
-            className="w-full border-b border-gray-800 md:border-0 pb-8 mb-8 md:pb-0 md:mb-0"
             key={item.id}
+            className="rounded-2xl border border-[#232347] bg-[#181926] shadow-lg hover:shadow-purple-900/20 transition-all duration-300 overflow-hidden flex flex-col h-full group"
           >
-            <PinContainer
-              title={item.title}
-              containerClassName="cursor-pointer w-full m-0 p-0"
+            <Link
+              href={`/projects/${item.id}`}
+              className="flex flex-col h-full"
             >
-              <Link
-                href={`/projects/${item.id}`}
-                className="block px-4 md:px-2"
-              >
-                <div className="relative overflow-hidden h-[18vh] sm:h-[20vh] lg:h-[30vh] mb-6 sm:mb-8 md:mb-10">
-                  <div
-                    className="relative w-full h-full overflow-hidden rounded-xl lg:rounded-3xl"
-                    style={{ backgroundColor: "#13162D" }}
-                  >
-                    <Image
-                      src="/bg.png"
-                      alt="bgimg"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 w-full h-full">
-                      <Image
-                        src={item.img}
-                        alt={item.title}
-                        fill
-                        className="z-10 object-contain p-0 m-0 image-float"
-                        priority
-                        onError={(e) => {
-                          // Fallback to a default image if project image fails to load
-                          const target = e.target as HTMLImageElement;
-                          target.src = "/fallback-image.png";
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
+              {/* Image Section */}
+              <div className="relative w-full h-40 md:h-44 lg:h-48 overflow-hidden">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  className="object-cover object-top w-full h-full rounded-t-2xl group-hover:scale-105 transition-transform duration-500"
+                  priority
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/fallback-image.png";
+                  }}
+                />
+                {/* Optional gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#181926]/80 to-transparent z-10" />
+              </div>
 
-                <h1 className="font-bold text-lg sm:text-xl lg:text-2xl line-clamp-1">
+              {/* Content Section */}
+              <div className="flex flex-col flex-1 p-6 pb-4">
+                <h1 className="font-bold text-white text-lg sm:text-xl lg:text-2xl mb-2 line-clamp-1">
                   {item.title}
                 </h1>
-
-                <p
-                  className="text-sm sm:text-base lg:text-xl font-light sm:font-normal line-clamp-2"
-                  style={{
-                    color: "#BEC1DD",
-                    margin: "0.75rem 0 1rem",
-                  }}
-                >
+                <p className="text-[#BEC1DD] text-sm sm:text-base lg:text-lg font-light mb-4 line-clamp-2">
                   {item.des}
                 </p>
 
-                <div className="flex items-center justify-between mt-4 sm:mt-6 mb-3">
-                  <div className="flex items-center">
-                    {item.iconLists.slice(0, 3).map((icon, index) => (
+                {/* Tech Stack Icons */}
+                {item.iconLists.length > 4 ? (
+                  <div className="relative w-full overflow-x-hidden mb-4 group/icon-marquee">
+                    <div
+                      className="flex gap-2 animate-marquee group-hover/icon-marquee:[animation-play-state:paused]"
+                      style={{ minWidth: "max-content" }}
+                    >
+                      {item.iconLists
+                        .concat(item.iconLists)
+                        .map((icon, index) => (
+                          <div
+                            key={index}
+                            className="border border-white/20 rounded-full bg-black w-9 h-9 flex justify-center items-center"
+                          >
+                            <Image
+                              src={icon}
+                              alt={`icon-${index}`}
+                              width={24}
+                              height={24}
+                              className="object-contain"
+                            />
+                          </div>
+                        ))}
+                    </div>
+                    <style jsx>{`
+                      @keyframes marquee {
+                        0% {
+                          transform: translateX(0);
+                        }
+                        100% {
+                          transform: translateX(-50%);
+                        }
+                      }
+                      .animate-marquee {
+                        animation: marquee 12s linear infinite;
+                      }
+                    `}</style>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 mb-4">
+                    {item.iconLists.map((icon, index) => (
                       <div
                         key={index}
-                        className="border border-white/[.2] rounded-full bg-black w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex justify-center items-center"
-                        style={{
-                          transform: `translateX(-${4 * index + 2}px)`,
-                        }}
+                        className="border border-white/20 rounded-full bg-black w-9 h-9 flex justify-center items-center"
                       >
                         <Image
                           src={icon}
                           alt={`icon-${index}`}
                           width={24}
                           height={24}
-                          className="p-1"
+                          className="object-contain"
                         />
                       </div>
                     ))}
                   </div>
+                )}
 
-                  <div className="flex justify-center items-center border border-purple/20 rounded-md px-3 py-1 bg-black/20">
-                    <span className="text-xs sm:text-sm text-purple whitespace-nowrap">
-                      View Details
-                    </span>
-                    <FaLocationArrow
-                      className="ms-2"
-                      color="#CBACF9"
-                      size={10}
-                    />
-                  </div>
+                {/* View Details Button */}
+                <div className="mt-auto flex justify-end">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-700 text-white text-sm font-medium shadow-md hover:bg-purple-800 transition-all duration-300 cursor-pointer">
+                    View Details
+                    <FaLocationArrow size={14} />
+                  </span>
                 </div>
-              </Link>
-            </PinContainer>
+              </div>
+            </Link>
           </div>
         ))}
       </div>

@@ -133,12 +133,12 @@ export const FloatingNav = ({
             duration: 0.2,
           }}
           className={cn(
-            "hidden md:flex fixed z-[5000] top-0 left-0 right-auto ml-[30%] px-6 sm:px-10 py-5 rounded-b-lg border-b border-l border-r border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-start space-x-6",
+            "hidden md:flex fixed z-[9999] top-0 left-0 right-0 mx-auto max-w-3xl px-6 sm:px-10 py-5 rounded-b-lg border-b border-l border-r border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-6 sticky-nav",
             className
           )}
           style={{
             backdropFilter: "blur(16px) saturate(180%)",
-            backgroundColor: "rgba(17, 25, 40, 0.75)",
+            backgroundColor: "rgba(17, 25, 40, 1)",
             borderRadius: "0 0 12px 12px",
             borderTop: "none",
             borderLeft: "1px solid rgba(255, 255, 255, 0.125)",
@@ -146,6 +146,9 @@ export const FloatingNav = ({
             borderBottom: "1px solid rgba(255, 255, 255, 0.125)",
             width: "auto",
             transform: "none",
+            position: "fixed",
+            top: visible ? "0" : "-100px",
+            transition: "top 0.3s ease-in-out",
           }}
         >
           {navItems.map((navItem: any, idx: number) => (

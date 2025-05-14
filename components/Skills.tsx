@@ -17,62 +17,29 @@ const Skills = () => {
     {
       title: "Front-end",
       skills: [
-        { name: "HTML", icon: "html5" },
-        { name: "CSS3", icon: "css3" },
-        { name: "Tailwind CSS", icon: "tailwindcss" },
         { name: "React.js", icon: "react" },
-        { name: "Redux", icon: "redux" },
         { name: "Next.js", icon: "nextdotjs" },
+        { name: "Tailwind CSS", icon: "tailwindcss" },
+        { name: "Redux", icon: "redux" },
         { name: "React Query", icon: "reactquery" },
-        { name: "React Hook Form", icon: "reacthookform" },
-        { name: "Formik", icon: "formik" },
-        { name: "RTK Query", icon: "redux" },
-        { name: "Ant Design", icon: "antdesign" },
-        { name: "Shadcn UI", icon: "shadcnui" },
-        { name: "Material UI", icon: "mui" },
-        { name: "Firebase Authentication", icon: "firebase" },
       ],
     },
     {
       title: "Back-end",
       skills: [
-        { name: "MongoDB", icon: "mongodb" },
-        { name: "Mongoose", icon: "mongoose" },
         { name: "Node.js", icon: "nodedotjs" },
         { name: "Express.js", icon: "express" },
-        { name: "TypeScript", icon: "typescript" },
+        { name: "MongoDB", icon: "mongodb" },
         { name: "JWT", icon: "jsonwebtokens" },
-        { name: "Cloudinary", icon: "cloudinary" },
-        { name: "SSLCOMMERZ", icon: "sslcommerz" },
-        { name: "Multer", icon: "multerjs" },
-        { name: "Bcrypt", icon: "bcryptjs" },
-        { name: "Zod", icon: "zod" },
-        { name: "Nodemailer", icon: "nodemailerjs" },
         { name: "Stripe", icon: "stripe" },
-        { name: "SurjoPay", icon: "surjopay" },
-        { name: "CORS", icon: "corsjs" },
       ],
     },
     {
-      title: "Tools",
+      title: "Tools & Others",
       skills: [
+        { name: "Git", icon: "github" },
         { name: "VS Code", icon: "vscode" },
-        { name: "Dev Tools", icon: "devtools" },
-        { name: "Github", icon: "github" },
-        { name: "ESLint", icon: "eslint" },
-        { name: "Prettier", icon: "prettier" },
         { name: "Vercel", icon: "vercel" },
-        { name: "Redux dev tools", icon: "redux" },
-      ],
-    },
-    {
-      title: "Interpersonal",
-      skills: [
-        { name: "Curiosity", icon: "curiosity" },
-        { name: "Active Listening", icon: "listening" },
-        { name: "Responsibility", icon: "responsibility" },
-        { name: "Flexibility", icon: "flexibility" },
-        { name: "Decision-Making", icon: "decision" },
       ],
     },
   ];
@@ -94,7 +61,7 @@ const Skills = () => {
 
   // Track images that fail to load
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-  
+
   // Define a union type for the icon return type
   type IconResult = string | JSX.Element;
 
@@ -104,7 +71,7 @@ const Skills = () => {
     if (localLogos[icon as keyof typeof localLogos] && !failedImages[icon]) {
       return localLogos[icon as keyof typeof localLogos];
     }
-    
+
     // Special case for interpersonal skills - use custom icons
     if (
       [
@@ -135,11 +102,11 @@ const Skills = () => {
     return `https://cdn.simpleicons.org/${icon}/white`;
   };
 
-  // Handle image load error 
+  // Handle image load error
   const handleImageError = (icon: string) => {
-    setFailedImages(prev => ({
+    setFailedImages((prev) => ({
       ...prev,
-      [icon]: true
+      [icon]: true,
     }));
   };
 
@@ -374,7 +341,9 @@ const Skills = () => {
                               width={16}
                               height={16}
                               onError={() => handleImageError(skill.icon)}
-                              unoptimized={skill.icon.includes("cdn.simpleicons.org")}
+                              unoptimized={skill.icon.includes(
+                                "cdn.simpleicons.org"
+                              )}
                             />
                           )}
                           <span className="font-medium text-xs whitespace-nowrap">

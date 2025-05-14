@@ -7,7 +7,10 @@ import { ParticlesBackground } from "./ui/ParticlesBackground";
 
 const AboutMe = () => {
   return (
-    <section id="about" className="py-20 w-full relative overflow-hidden">
+    <section
+      id="about"
+      className="py-20 w-full relative overflow-hidden bg-black"
+    >
       {/* Particles Animation Background */}
       <ParticlesBackground />
 
