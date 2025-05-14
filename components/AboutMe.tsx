@@ -1,9 +1,5 @@
-import {
-  FaLinkedinIn,
-  FaGithub,
-  FaFacebookF,
-  FaXTwitter,
-} from "react-icons/fa6";
+import { FaLinkedinIn, FaGithub, FaFacebookF } from "react-icons/fa6";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Spotlight } from "./ui/Spotlight";
@@ -102,7 +98,7 @@ const AboutMe = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="https://linkedin.com"
+                    href="https://bd.linkedin.com/in/developer-jabed"
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-blue-600 transition-colors"
                   >
                     <FaLinkedinIn />
@@ -113,7 +109,7 @@ const AboutMe = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="https://github.com"
+                    href="https://github.com/Jabed-Hasan"
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-gray-700 transition-colors"
                   >
                     <FaGithub />
@@ -124,21 +120,10 @@ const AboutMe = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="https://facebook.com"
+                    href="https://facebook.com/yourusername"
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-blue-800 transition-colors"
                   >
                     <FaFacebookF />
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href="https://x.com"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-md border border-zinc-800 flex items-center justify-center hover:bg-black transition-colors"
-                  >
-                    <FaXTwitter />
                   </Link>
                 </motion.div>
                 <motion.div
@@ -147,10 +132,13 @@ const AboutMe = () => {
                   className="mt-3 sm:mt-0 sm:ml-auto"
                 >
                   <Link
-                    href="/resume.pdf"
-                    className="border border-white rounded px-3 py-1.5 sm:px-4 sm:py-2 text-sm hover:bg-white hover:text-black transition-colors flex items-center"
+                    href="https://drive.google.com/file/d/1PNlB0Oc_FUXpy0s3LrXhE3lgIjJOqjks/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-white rounded px-3 py-1.5 sm:px-4 sm:py-2 text-sm hover:bg-white hover:text-black transition-colors flex items-center gap-2"
                   >
                     View Resume
+                    <FaExternalLinkAlt className="text-xs opacity-70" />
                   </Link>
                 </motion.div>
               </motion.div>

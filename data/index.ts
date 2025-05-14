@@ -79,10 +79,10 @@ export const projects = [
     des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
     img: "/data/1.jpg",
     detailsImage: "/data/b2.png",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-    link: "/ui.earth.com",
-    github: "https://github.com/username/solar-system-3d",
-    githubBackend: "https://github.com/username/solar-system-3d-api",
+    iconLists: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg", "/c.svg"],
+    link: "https://feedme-jabeds-projects.vercel.app",
+    github: "https://github.com/Jabed-Hasan/feedme.git",
+    githubBackend: "https://github.com/Jabed-Hasan/feedme_backend.git",
     fullDescription:
       "FeedMe is a Meal Planning & Delivery Web Application that allows users to personalize their meal plans and schedule deliveries based on their dietary preferences. Customers can browse available meal options, select meals based on their preferences, and schedule delivery. Meal providers can manage menus, respond to customer orders, and track deliveries.",
 
@@ -107,9 +107,9 @@ export const projects = [
     img: "/data/2.jpg",
     detailsImage: "/data/b3.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "/ui.yoom.com",
-    github: "https://github.com/username/yoom-app",
-    githubBackend: "https://github.com/username/yoom-app-backend",
+    link: "https://velocity-car-shop.vercel.app",
+    github: "https://github.com/Jabed-Hasan/velocity-car-shop-fontend.git",
+    githubBackend: "https://github.com/Jabed-Hasan/velocity-backend.git",
     fullDescription:
       "A modern, responsive e-commerce car shop built with React, TypeScript, and Redux Toolkit. Velocity Car Shop offers a smooth experience for customers to browse, search, and purchase cars while providing a robust admin dashboard for managing products, users, and orders with role-based access",
 
@@ -133,11 +133,12 @@ export const projects = [
     img: "/data/4.png",
     detailsImage: "/data/b4.png",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "/ui.aiimg.com",
-    github: "https://github.com/username/ai-image-saas",
-    githubBackend: "https://github.com/username/ai-image-saas-api",
+    link: "https://contest-creation-platform.surge.sh",
+    github: "https://github.com/Jabed-Hasan/contest-platform-client-site.git",
+    githubBackend:
+      "https://github.com/Jabed-Hasan/contest-platform-server-site.git",
     fullDescription:
-      "This SaaS application combines the creative power of AI with intuitive design tools similar to Canva. Users can generate and edit images using AI, with a flexible payment and credits system. The application features user authentication, subscription management, and a dashboard for monitoring usage. I implemented integrations with modern AI image generation APIs and built a robust payment processing system.",
+      "A full-stack web application that allows users to create and participate in contests by paying a fee. Features include secure authentication, CRUD operations for contests, countdown timers for contest endings, and real-time updates",
     features: [
       "User authentication and secure login to access and participate in contests",
       "CRUD operations for contests (Create, Read, Update, Delete) with admin access",
@@ -153,25 +154,30 @@ export const projects = [
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
+    title: "Restika restaurant website",
     des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
     img: "/data/3.jpg",
     detailsImage: "/data/b1.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "/ui.apple.com",
-    github: "https://github.com/username/apple-iphone-3d",
-    githubBackend: "https://github.com/username/apple-iphone-3d-server",
+    link: "https://b8a11-client-side-jabed-hasan.vercel.app",
+    github: "https://github.com/Jabed-Hasan/Restaurent-Management.git",
+    githubBackend:
+      "https://github.com/Jabed-Hasan/Restaurent-Management-server-side.git",
     fullDescription:
-      "This project is a recreation of Apple's iPhone 15 Pro website, featuring stunning animations and 3D effects. I used GSAP for smooth, timeline-based animations and Three.js for interactive 3D models. The website showcases the iPhone from multiple angles with animated transitions and feature highlights. I paid special attention to performance optimization to ensure smooth scrolling and transitions even with complex 3D elements.",
+      "A full-stack web application where users can browse a restaurant menu, place orders, and manage them. Admins and users have access to full CRUD operations for menu items and orders. Built with MERN stack (MongoDB, Express.js, React, Node.js).",
     features: [
-      "Realistic 3D iPhone model with interactive rotation",
-      "Scroll-triggered animations and reveals",
-      "Feature showcase with animated transitions",
-      "Color selection with real-time 3D model updates",
-      "Responsive design that adapts to all screen sizes",
+      "Secure user authentication with JWT ",
+      "Users can browse menu items and place orders with real-time status updates",
+      "CRUD operations for orders and menu items by users and admins",
+      "Role-based access: customers and admins have separate permissions",
+      "Responsive and clean UI using Tailwind CSS for mobile and desktop views",
+      "Order tracking with dynamic status updates (Placed, In Progress, Delivered)",
+      "Admin dashboard for managing all orders and restaurant inventory",
+      "Persistent data management with MongoDB and RESTful API",
     ],
+
     challenges:
-      "Creating smooth transitions between complex 3D scenes while maintaining high performance was difficult. I implemented techniques like model instancing, texture compression, and progressive loading to optimize the experience.",
+      "Implementing accurate role-based access control was challenging, especially ensuring only authorized users could update or view specific orders. Syncing UI state with real-time order updates and maintaining secure, smooth session management across login states also required careful handling.",
   },
 ];
 
@@ -319,31 +325,11 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
+    title: "MERN Stack Developer",
+    company: "PirhoTech",
     desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
     className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
-  },
-  {
-    id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp3.svg",
-  },
-  {
-    id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
-    className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
+    thumbnail: "/components/pirhotech-logo.png",
   },
 ];
 
@@ -351,17 +337,12 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
-    link: "https://github.com/yourusername",
-  },
-  {
-    id: 2,
-    img: "/twit.svg",
-    link: "https://twitter.com/yourusername",
+    link: "https://github.com/Jabed-Hasan",
   },
   {
     id: 3,
     img: "/link.svg",
-    link: "https://linkedin.com/in/yourusername",
+    link: "https://bd.linkedin.com/in/developer-jabed",
   },
   {
     id: 4,
