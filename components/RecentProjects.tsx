@@ -10,7 +10,6 @@ import { PinContainer } from "./ui/Pin";
 type Project = {
   id: number;
   title: string;
-  des: string;
   img: string;
   iconLists: string[];
   link: string;
@@ -98,7 +97,8 @@ const RecentProjects = () => {
                   {item.title}
                 </h1>
                 <p className="text-[#BEC1DD] text-sm sm:text-base lg:text-lg font-light mb-4 line-clamp-2">
-                  {item.des}
+                  {item.fullDescription.substring(0, 100) +
+                    (item.fullDescription.length > 100 ? "..." : "")}
                 </p>
 
                 {/* Tech Stack Icons */}

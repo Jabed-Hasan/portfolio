@@ -22,12 +22,16 @@ export async function generateMetadata(
     };
   }
 
+  const metaDescription =
+    project.fullDescription.substring(0, 155) +
+    (project.fullDescription.length > 155 ? "..." : "");
+
   return {
     title: `${project.title} | Project Details`,
-    description: project.des,
+    description: metaDescription,
     openGraph: {
       title: project.title,
-      description: project.des,
+      description: metaDescription,
       images: [project.img],
     },
   };

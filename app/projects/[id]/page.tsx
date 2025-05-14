@@ -35,6 +35,7 @@ type Project = {
   fullDescription: string;
   features: string[];
   challenges: string;
+  iconNames?: string[];
 };
 
 // Client component for the actual page content
@@ -594,7 +595,9 @@ const ProjectDetailsPage = () => {
                       onError={() => handleIconError(icon, index)}
                     />
                     <span className="text-sm text-gray-300">
-                      {icon.split("/").pop()?.split(".")[0]}
+                      {project.iconNames && project.iconNames[index]
+                        ? project.iconNames[index]
+                        : icon.split("/").pop()?.split(".")[0]}
                     </span>
                   </div>
                 ))}

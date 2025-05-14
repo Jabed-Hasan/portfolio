@@ -76,10 +76,28 @@ export const projects = [
   {
     id: 1,
     title: "FeedMe - Personalized Meal Planning & Delivery 🍱",
-    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
     img: "/data/1.jpg",
     detailsImage: "/data/b2.png",
-    iconLists: ["/next.svg", "/re.svg", "/ts.svg", "/tail.svg", "/c.svg"],
+    iconLists: [
+      "/next.svg",
+      "/redux.svg",
+      "/redux.svg", // For RTK Query
+      "/mongoose.svg",
+      "/mongo.svg",
+      "/node.svg",
+      "/ts.svg", // Added TypeScript
+      "/tail.svg", // Added Tailwind CSS
+    ],
+    iconNames: [
+      "Next.js",
+      "Redux",
+      "RTK Query",
+      "Mongoose",
+      "MongoDB",
+      "Node.js",
+      "TypeScript", // Added TypeScript
+      "Tailwind CSS", // Added Tailwind CSS
+    ],
     link: "https://feedme-jabeds-projects.vercel.app",
     github: "https://github.com/Jabed-Hasan/feedme.git",
     githubBackend: "https://github.com/Jabed-Hasan/feedme_backend.git",
@@ -103,10 +121,28 @@ export const projects = [
   {
     id: 2,
     title: "Velocity Car Shop",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
     img: "/data/2.jpg",
     detailsImage: "/data/b3.png",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+    iconLists: [
+      "/re.svg",
+      "/redux.svg",
+      "/redux.svg",
+      "/mongoose.svg",
+      "/mongo.svg",
+      "/node.svg",
+      "/ts.svg",
+      "/tail.svg",
+    ],
+    iconNames: [
+      "React.js",
+      "Redux",
+      "RTK Query",
+      "Mongoose",
+      "MongoDB",
+      "Node.js",
+      "TypeScript",
+      "Tailwind CSS",
+    ],
     link: "https://velocity-car-shop.vercel.app",
     github: "https://github.com/Jabed-Hasan/velocity-car-shop-fontend.git",
     githubBackend: "https://github.com/Jabed-Hasan/velocity-backend.git",
@@ -129,10 +165,16 @@ export const projects = [
   {
     id: 3,
     title: "Contest Creation Platform",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
     img: "/data/4.png",
     detailsImage: "/data/b4.png",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
+    iconLists: [
+      "/re.svg",
+      "/tail.svg",
+      "/express.svg",
+      "/node.svg",
+      "/mongo.svg",
+    ],
+    iconNames: ["React", "Tailwind CSS", "Express.js", "Node.js", "MongoDB"],
     link: "https://contest-creation-platform.surge.sh",
     github: "https://github.com/Jabed-Hasan/contest-platform-client-site.git",
     githubBackend:
@@ -155,7 +197,6 @@ export const projects = [
   {
     id: 4,
     title: "Restika restaurant website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
     img: "/data/3.jpg",
     detailsImage: "/data/b1.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
