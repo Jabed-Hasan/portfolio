@@ -30,26 +30,15 @@ export const FloatingNav = ({
 }) => {
   const { scrollYProgress } = useScroll();
 
-  // set true for the initial state so that nav bar is visible in the hero section
+  // Always visible
   const [visible, setVisible] = useState(true);
   const [activeSection, setActiveSection] = useState("#home");
 
+  // Remove the useMotionValueEvent that was hiding navbar on scroll down
+  // Instead, always keep it visible
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
-    if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
-
-      if (scrollYProgress.get() < 0.05) {
-        // also set true for the initial state
-        setVisible(true);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
-    }
+    // Always keep navbar visible
+    setVisible(true);
   });
 
   // Check which section is currently in view
@@ -123,11 +112,11 @@ export const FloatingNav = ({
         <motion.div
           initial={{
             opacity: 1,
-            y: -100,
+            y: 0, // Start visible
           }}
           animate={{
-            y: visible ? 0 : -100,
-            opacity: visible ? 1 : 0,
+            y: 0, // Always visible
+            opacity: 1, // Always fully opaque
           }}
           transition={{
             duration: 0.2,
@@ -147,7 +136,7 @@ export const FloatingNav = ({
             width: "auto",
             transform: "none",
             position: "fixed",
-            top: visible ? "0" : "-100px",
+            top: "0", // Always at top
             transition: "top 0.3s ease-in-out",
           }}
         >
